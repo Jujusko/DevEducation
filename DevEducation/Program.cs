@@ -6,16 +6,18 @@ namespace DevEducation
     {
         static void Main(string[] args)
         {
-            //  First task
-            
             int i, j;
+            /*
             Console.WriteLine("Choose correct day");
             i = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Choose task");
             j = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(Manager.ManageTasks(i, j));
-            
-            //Console.WriteLine(Loops.Dubs.FindDubs());
+            */
+            int []array = Arrays.SomeSorts.SelectSort();
+            int cnt = 0;
+          
+            //Console.WriteLine(" ",Arrays.PartTwo.ChangeArrayHalves());
         }
     }
 }

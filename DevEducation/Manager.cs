@@ -13,6 +13,10 @@ namespace DevEducation
             
             if(day == 1)
                 return(FirstHomework.AllTasks(task));
+            if (day == 2)
+                return SecondDay.CheckTasksBranches(task);
+            if (day == 3)
+                return (ThirdDay.AllTasks(task));
             return (1);
         }
     }

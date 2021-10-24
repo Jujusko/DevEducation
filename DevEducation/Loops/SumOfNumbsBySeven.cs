@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class SumOfNumbs
+    class SumOfNumbsBySeven
     {
-        public static int GetSum()
+        public static int GetSumDivsBySeven()
         {
             int a, b;
             int tmp;

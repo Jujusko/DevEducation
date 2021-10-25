@@ -17,6 +17,8 @@ namespace DevEducation
                 return SecondDay.CheckTasksBranches(task);
             if (day == 3)
                 return (ThirdDay.AllTasks(task));
+            if (day == 4)
+                return ArraysDay.AllTasks(task);
             return (1);
         }
     }

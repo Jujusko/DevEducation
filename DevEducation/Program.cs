@@ -16,11 +16,13 @@ namespace DevEducation
             */
             dynamic          gates = 1;
             int cnt;
+            /*
             Console.WriteLine("Choose correct day");
             i = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Choose task");
             j = Convert.ToInt32(Console.ReadLine());
             gates = Manager.ManageTasks(i, j);
+            */
             /*
             i = 2;dsds
             while (i < 4)
@@ -49,6 +51,7 @@ namespace DevEducation
                 i++;
             }
             */
+            DoubleArrays.BiggestThanNighbours.FindBig();
         }
     }
 }

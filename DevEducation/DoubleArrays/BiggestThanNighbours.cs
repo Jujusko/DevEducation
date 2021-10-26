@@ -9,31 +9,18 @@ namespace DevEducation.DoubleArrays
     class BiggestThanNighbours
     {
 
-        public static int FindBig()
+        public static int FindBig(int[,] arr)
         {
-            int[,] arr;
-            Random r = new();
-            arr = new int[3, 3];
             int i, j;
             int i1, j1;
             int cnt = 0;
             int cntInCnt = 0;
 
             int toCheck;
-            int arrInConvert;
+            int nnumb;
             i1 = 0;
-            j = 0;
-            i = 0;
-            while (i < 3)
-            {
-                j = 0;
-                while (j < 3)
-                {
-                    arr[i, j] = r.Next(0, 100);
-                    j++;
-                }
-                i++;
-            }
+            j = arr.GetLength(1);
+            i = arr.GetLength(0);
 
             i--;
             j--;
@@ -45,52 +32,43 @@ namespace DevEducation.DoubleArrays
                     toCheck = arr[i1, j1];
                     if (i1 - 1 >= 0)
                     {
-                        if (arr[i1 - 1, j] < toCheck)
+                        nnumb = arr[i1 - 1, j1];
+                        if (arr[i1 - 1, j1] < toCheck)
                             cntInCnt++;
                     }
                     else
                         cntInCnt++;
                     if (i1 + 1 <= i)
                     {
-                        if (arr[i1 + 1, j] < toCheck)
+                        nnumb = arr[i1 + 1, j1];
+                        if (arr[i1 + 1, j1] < toCheck)
                             cntInCnt++;
                     }
                     else
                         cntInCnt++;
                     if (j1 + 1 <= j)
                     {
-                        if (arr[i, j1 + 1] < toCheck)
+                        nnumb = arr[i1, j1 + 1];
+                        if (arr[i1, j1 + 1] < toCheck)
                             cntInCnt++;
                     }
                     else
                         cntInCnt++;
                     if (j1 - 1 >= 0)
                     {
-                        if (arr[i, j1 - 1] < toCheck)
+                        nnumb = arr[i1, j1 - 1];
+                        if (arr[i1, j1 - 1] < toCheck)
                             cntInCnt++;
                     }
                     else
                         cntInCnt++;
                     if (cntInCnt == 4)
                         cnt++;
+                    cntInCnt = 0;
                     j1++;
                 }
                 i1++;
             }
-            i = 0;
-            j = 0;
-            while (i < 3)
-            {
-                j = 0;
-                while (j < 3)
-                {
-                    Console.Write(arr[i, j] + "\t");
-                    j++;
-                }
-                Console.WriteLine();
-                i++;
-            }
-            Console.WriteLine("\n" + cnt);
             return cnt;
         }
     }

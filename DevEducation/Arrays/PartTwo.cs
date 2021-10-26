@@ -8,15 +8,11 @@ namespace DevEducation.Arrays
 {
     class PartTwo
     {
-        public static int GetSummNumbsOddIndexes()
+        public static int GetSummNumbsOddIndexes(int[] array)
         {
             int sum;
             int cnt;
-            Random rand = new Random();
-            int[] array = new int[10];
-            cnt = 0;
-            while (cnt < array.Length)
-                array[cnt++] = rand.Next(0, 100);
+
             cnt = 0;
             sum = 0;
             while (cnt < array.Length)
@@ -26,16 +22,12 @@ namespace DevEducation.Arrays
             }
             return sum;
         }
-        public static int[] ReverseArray()
+        public static int[] ReverseArray(int[] array)
         {
             int sum;
             int cnt;
             int tmp;
-            Random rand = new Random();
-            int[] array = new int[10];
-            cnt = 0;
-            while (cnt < array.Length)
-                array[cnt++] = rand.Next(0, 100);
+
             cnt = 0;
             while(cnt < (array.Length / 2))
             {
@@ -46,39 +38,28 @@ namespace DevEducation.Arrays
             }
             return array;
         }
-        public static int GetSummOddIndexes()
+        public static int GetSummOddIndexes(int[] array)
         {
             int sum;
             int cnt;
-            Random rand = new Random();
-            int[] array = new int[10];
-            cnt = 0;
-            while (cnt < array.Length)
-                array[cnt++] = rand.Next(0, 100);
+
             cnt = 0;
             sum = 0;
             while (cnt < array.Length)
             {
                 if ((cnt + 1) % 2 != 0)
-                    sum++;
+                    sum+= array[cnt];
             }
             return sum;
         }
-        public static int[] ChangeArrayHalves()
+        public static int[] ChangeArrayHalves(int[] array)
         {
 
             int half;
             int cnt;
             int tmp;
 
-            half = 0;
-            Random rand = new Random();
-            int []array = new int[10];
             cnt = 0;
-            while (cnt < array.Length)
-                array[cnt++] = rand.Next(0, 100);
-            cnt = 0;
-            Console.WriteLine();
             if (array.Length % 2 == 1)
                 half = array.Length / 2 + 1;
             else

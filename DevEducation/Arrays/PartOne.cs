@@ -8,15 +8,11 @@ namespace DevEducation.Arrays
 {
     class PartOne
     {
-        public static int FindMinNumb()
+        public static int FindMinNumb(int []array) 
         {
             int min;
             int cnt;
-            Random rand = new Random();
-            int[] array = new int[10];
-            min = 0;
-            while (min < array.Length)
-                array[min++] = rand.Next(0, 100);
+
             min = array[0];
             cnt = 0;
             while (cnt < array.Length)
@@ -27,15 +23,11 @@ namespace DevEducation.Arrays
             }
             return min;
         }
-        public static int FindMaxNumb()
+        public static int FindMaxNumb(int[] array)
         {
             int min;
             int cnt;
-            Random rand = new Random();
-            int[] array = new int[10];
-            min = 0;
-            while (min < array.Length)
-                array[min++] = rand.Next(0, 100);
+
             min = array[0];
             cnt = 0;
             while (cnt < array.Length)
@@ -47,16 +39,12 @@ namespace DevEducation.Arrays
             return min;
         }
 
-        public static int FindIndexMinNumb()
+        public static int FindIndexMinNumb(int[] array)
         {
             int min;
             int cnt;
             int index;
-            Random rand = new Random();
-            int[] array = new int[10];
-            min = 0;
-            while (min < array.Length)
-                array[min++] = rand.Next(0, 100);
+
             min = array[0];
             cnt = 0;
             index = 0;
@@ -71,16 +59,12 @@ namespace DevEducation.Arrays
             }
             return index;
         }
-        public static int FindIndexMaxNumb()
+        public static int FindIndexMaxNumb(int[] array)
         {
             int max;
             int cnt;
             int index;
-            Random rand = new Random();
-            int[] array = new int[10];
-            max= 0;
-            while (max < array.Length)
-                array[max++] = rand.Next(0, 100);
+
             max = array[0];
             cnt = 0;
             index = 0;

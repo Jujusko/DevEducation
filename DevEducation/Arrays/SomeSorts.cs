@@ -8,15 +8,12 @@ namespace DevEducation.Arrays
 {
     class SomeSorts
     {
-        public static int[] BubbleSort()
+            //half = 0;
+        public static int[] BubbleSort(int[] array)
         {
             int tmp;
             int cnt;
-            Random rand = new Random();
-            int[] array = new int[11];
-            cnt = 0;
-            while (cnt < array.Length)
-                array[cnt++] = rand.Next(0, 100);
+    
             cnt = -1;
             tmp = 0;
             while (cnt < array.Length - 2)
@@ -78,19 +75,14 @@ namespace DevEducation.Arrays
             return (minNumb, index);
         }
         //      End utils
-        public static int[] SelectSort()
+        public static int[] SelectSort(int[] array)
         {
-            int cnt;
             int minNumb;
             int index;
             int newCnt;
             int arLenght;
-            Random rand = new();
-            int[] array = new int[10];
+
             int[] newAr = new int[10];
-            cnt = 0;
-            while (cnt < array.Length)
-                array[cnt++] = rand.Next(-100, 100);
             newCnt = 0;
             arLenght = array.Length;
             while(arLenght != 1)

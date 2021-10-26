@@ -8,14 +8,9 @@ namespace DevEducation.FirstDay
 {
     class LineFormula
     {
-        public static int Solution()
+        public static int Solution(int a, int b, int c)
         {
-            int a, b, c, x;
-
-            Console.WriteLine("Put a, b, c\n");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
-            c = Convert.ToInt32(Console.ReadLine());
+            int x;
 
             if (a == 0 || b == 0 || c == 0)
             {

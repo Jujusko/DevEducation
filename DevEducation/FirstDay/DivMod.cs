@@ -8,14 +8,13 @@ namespace DevEducation.FirstDay
 {
     class DivMod
     {
-        public static void PrintDivMod()
+        public static void PrintDivMod(int a, int b)
         {
-            int a;
-            int b;
 
-            Console.WriteLine("Put numb a and b\nFirst output = a / b\nSecond output = a % b");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Пользователь вводит 2 числа (A и B). Выведите " +
+                "в консоль решение по уравнению");
+
             Console.WriteLine(a / b);
             Console.WriteLine(a % b);
         }

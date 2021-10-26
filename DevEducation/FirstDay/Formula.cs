@@ -8,15 +8,10 @@ namespace DevEducation.FirstDay
 {
     class Formula
     {
-        public static void GetSolution()
+        public static void GetSolution(int a, int b)
         {
-            int a;
-            int b;
             int res;
 
-            Console.WriteLine("Put number a and b.");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
             if (a == b)
             {
                 Console.WriteLine("Divide by zero!");

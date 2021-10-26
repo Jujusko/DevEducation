@@ -10,15 +10,12 @@ namespace DevEducation.Branches
     {
         //ЭТО КОПЕТС КАКОЙ-ТО
         // но было интересно
-        public static void GetString()
+        public static void GetString(int a)
         {
             Dictionary<int, string> StringNumb = new Dictionary<int, string>();
-            Console.WriteLine("Input number from 1 to 99");
-            int a;
             string RemoveLastChar;
             char[] MyChar = { 'ь', 'е'};
             
-            a = Convert.ToInt32(Console.ReadLine());
             if (a > 99 || a < 0)
             {
                 Console.WriteLine("Error");

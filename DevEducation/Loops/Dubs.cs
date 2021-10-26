@@ -9,16 +9,13 @@ namespace DevEducation.Loops
     class Dubs
     {
         //task 12
-        public static bool FindDubs()
+        public static bool FindDubs(int a, int b)
         {
-            int a;
-            int b;
+
             int tmp;
             int tmp2;
             int tmp3;
 
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
             if (b < 10)
             {
                 tmp = a;

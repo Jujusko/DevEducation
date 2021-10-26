@@ -8,13 +8,11 @@ namespace DevEducation.Loops
 {
     class WTF
     {
-        public static int WTFIdkWhatIshouldToDo()
+        public static int WTFIdkWhatIshouldToDo(int i)
         {
-            int i;
             int odd, notOdd;
             int cnt;
 
-            i = Convert.ToInt32(Console.ReadLine());
             odd = 0;
             notOdd = 0;
             cnt = 0;

@@ -9,13 +9,11 @@ namespace DevEducation.Loops
     class MirrorNumb
     {
         //Task 10
-        public static int FindMirror()
+        public static int FindMirror(int a)
         {
             int mirror;
-            int a;
 
             mirror = 0;
-            a = Convert.ToInt32(Console.ReadLine());
             while(a / 10 > 0)
             {
                 mirror = (a % 10) + mirror * 10;

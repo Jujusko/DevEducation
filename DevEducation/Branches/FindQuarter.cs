@@ -8,12 +8,8 @@ namespace DevEducation.Branches
 {
     class FindQuarter
     {
-        public static int ReturnQuarter()
+        public static int ReturnQuarter(int a, int b)
         {
-            int a, b;
-            Console.WriteLine("Put x and y (coords)");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
             if (a > 0 && b > 0)
                 return 1;
             else if (a > 0 && b < 0)

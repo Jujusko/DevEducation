@@ -8,13 +8,11 @@ namespace DevEducation.Loops
 {
     class MaxDiv
     {
-        public static int FindMaxDivNumb()
+        public static int FindMaxDivNumb(int a)
         {
-            int a;
             int res;
 
             Console.WriteLine("4 task");
-            a = Convert.ToInt32(Console.ReadLine());
             res = a;
             while(res-- > 0)
             {

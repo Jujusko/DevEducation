@@ -12,7 +12,6 @@ namespace DevEducation.Loops
         {
             return x * x * x;
         }
-
         public static double ABS(double x)
         {
             if (x < 0)

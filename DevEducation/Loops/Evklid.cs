@@ -8,14 +8,8 @@ namespace DevEducation.Loops
 {
     class Evklid
     {
-        public static int BiggestDiv()
+        public static int BiggestDiv(int a, int b)
         {
-            int a, b;
-
-            Console.WriteLine("Task 7");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
-
             while(a != 0 && b != 0)
             {
                 if (a > b)

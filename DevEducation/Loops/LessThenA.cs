@@ -8,13 +8,11 @@ namespace DevEducation.Loops
 {
     class LessThenA
     {
-        public static int FindNumbers()
+        public static int FindNumbers(int a)
         {
-            int a;
             int maxNumber;
 
             Console.WriteLine("Task 3");
-            a = Convert.ToInt32(Console.ReadLine());
             maxNumber = 1;
             while (maxNumber * maxNumber < a)
                 maxNumber++;

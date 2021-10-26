@@ -8,16 +8,13 @@ namespace DevEducation.Loops
 {
     class SumOfNumbsBySeven
     {
-        public static int GetSumDivsBySeven()
+        public static int GetSumDivsBySeven(int a, int b)
         {
-            int a, b;
             int tmp;
             int res;
 
             res = 0;
             Console.WriteLine("Task 5");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
             if (a > b)
             {
                 tmp = a;

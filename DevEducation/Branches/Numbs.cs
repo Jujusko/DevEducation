@@ -8,15 +8,8 @@ namespace DevEducation.Branches
 {
     class Numbs
     {
-        public static void SortNumbs()
+        public static void SortNumbs(int a, int b, int c)
         {
-            int a, b, c;
-
-            Console.WriteLine("Put 3 numbers");
-            a = Convert.ToInt32(Console.ReadLine());
-            b = Convert.ToInt32(Console.ReadLine());
-            c = Convert.ToInt32(Console.ReadLine());
-            
             if (a < b && a < c)
             {
                 Console.Write(a + " ");

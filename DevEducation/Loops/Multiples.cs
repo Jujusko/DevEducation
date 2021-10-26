@@ -8,14 +8,13 @@ namespace DevEducation.Loops
 {
     class Multiples
     {
-        public static int FindMultiples()
+        public static int[] FindMultiples(int a)
         {
-            int a;
             int cnt;
             int range;
+            int []all_nubs;
 
-            Console.WriteLine("Put number from 1 to 999 to find multiples until 1000");
-            a = Convert.ToInt32(Console.ReadLine());
+            
             range = a;
             cnt = 0;
             while (range++ <= 1000)
@@ -23,7 +22,17 @@ namespace DevEducation.Loops
                 if (range % a == 0)
                     cnt++;
             }
-            return cnt;
+            all_nubs = new int[cnt];
+            cnt = 0;
+            while (range++ <= 1000)
+            {
+                if (range % a == 0)
+                {
+                    all_nubs[cnt] = range;
+                    cnt++;
+                }
+            }
+            return all_nubs;
         }
     }
 }

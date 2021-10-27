@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class WTF
+    public class WTF
     {
         public static int WTFIdkWhatIshouldToDo(int i)
         {

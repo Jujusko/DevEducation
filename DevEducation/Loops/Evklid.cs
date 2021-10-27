@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class Evklid
+    public class Evklid
     {
         public static int BiggestDiv(int a, int b)
         {

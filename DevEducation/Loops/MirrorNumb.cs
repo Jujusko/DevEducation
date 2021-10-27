@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class MirrorNumb
+    public class MirrorNumb
     {
         //Task 10
         public static int FindMirror(int a)

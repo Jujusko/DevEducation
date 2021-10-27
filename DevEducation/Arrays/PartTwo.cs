@@ -64,7 +64,7 @@ namespace DevEducation.Arrays
                 half = array.Length / 2 + 1;
             else
                 half = array.Length / 2;
-            Console.WriteLine(half);
+  
             while (cnt < half)
             {
                 tmp = array[cnt];

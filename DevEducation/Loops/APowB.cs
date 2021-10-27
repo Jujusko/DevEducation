@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class APowB
+    public class APowB
     {
         public static double DoAPowB(int a, int b)
         {

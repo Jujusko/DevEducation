@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.FirstDay
 {
-    class Formula
+    public class Formula
     {
         public static void GetSolution(int a, int b)
         {

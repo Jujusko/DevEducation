@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace DevEducation.FirstDay
 {
-    class DivMod
+     public class DivMod
     {
-        public static void PrintDivMod(int a, int b)
+        public static (int, int) PrintDivMod(int a, int b)
         {
-            Console.WriteLine(a / b);
-            Console.WriteLine(a % b);
+            if (b == 0)
+            {
+                Console.WriteLine("Error. Divide by Zero");
+                return (0, 0);
+            }
+            return ((a / b), (a % b));
         }
     }
 }

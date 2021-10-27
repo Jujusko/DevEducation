@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class Fibonacci
+    public class Fibonacci
     {
         public static int FindFibo(int n)
         {

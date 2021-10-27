@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class Dubs
+    public class Dubs
     {
         //task 12
         public static bool FindDubs(int a, int b)

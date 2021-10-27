@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.FirstDay
 {
-    class Swap
+    public class Swap
     {
         public static (int, int) SwapNumbs(int a, int b)
         {

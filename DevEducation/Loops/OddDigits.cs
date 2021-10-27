@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class OddDigits
+    public class OddDigits
     {
         //Task 9
         public static int FindAmntOddDigits(int a)

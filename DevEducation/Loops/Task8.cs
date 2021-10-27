@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class Task8
+    public class Task8
     {
         public static double Cube(double x)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class Multiples
+    public class Multiples
     {
         public static int[] FindMultiples(int a)
         {

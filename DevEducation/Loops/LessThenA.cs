@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class LessThenA
+    public class LessThenA
     {
         public static int FindNumbers(int a)
         {

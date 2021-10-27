@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.FirstDay
 {
-    class LineFormula
+    public class LineFormula
     {
         public static int Solution(int a, int b, int c)
         {

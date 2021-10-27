@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    class MaxDiv
+    public class MaxDiv
     {
         public static int FindMaxDivNumb(int a)
         {

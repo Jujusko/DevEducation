@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Branches
 {
-    class StringNumbers
+    public class StringNumbers
     {
         //ЭТО КОПЕТС КАКОЙ-ТО
         // но было интересно
-        public static void GetString(int a)
+        public static string GetString(int a)
         {
             Dictionary<int, string> StringNumb = new Dictionary<int, string>();
             string RemoveLastChar;
             char[] MyChar = { 'ь', 'е'};
+            string toReturnNumb;
             
-            if (a > 99 || a < 0)
-            {
-                Console.WriteLine("Error");
-                return;
-            }
+            
             StringNumb.Add(1, "Один");
             StringNumb.Add(2, "Два");
             StringNumb.Add(3, "Три");
@@ -40,17 +37,23 @@ namespace DevEducation.Branches
             StringNumb.Add (80, "Восемьдесят");
             StringNumb.Add (90, "Девяносто");
 
-            if (a > 10 && a < 20)
+            if (a > 0 && a < 11)
+                toReturnNumb = StringNumb[a];
+            else if (a > 10 && a < 20)
             {
                 RemoveLastChar = StringNumb[a % 10].TrimEnd(MyChar);
+                toReturnNumb = RemoveLastChar + "надцать";
                 Console.WriteLine(RemoveLastChar + "надцать");
             }
-            if (a > 19)
+            else if (a > 19 && a < 100)
             {
-                Console.Write(StringNumb[a / 10 * 10]);
+                toReturnNumb = StringNumb[a / 10 * 10];
                 if (a % 10 != 0)
-                    Console.WriteLine(StringNumb[a % 10]);
+                    toReturnNumb += StringNumb[a % 10];
             }
+            else
+                toReturnNumb = "Error. Put Number less than 100";
+            return toReturnNumb;
         }
     }
 }

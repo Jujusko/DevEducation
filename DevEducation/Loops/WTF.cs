@@ -8,22 +8,61 @@ namespace DevEducation.Loops
 {
     public class WTF
     {
-        public static int WTFIdkWhatIshouldToDo(int i)
+        public static int[] WTFIdkWhatIshouldToDo(int x)
         {
-            int odd, notOdd;
-            int cnt;
+            int p;//точка отсчета
 
-            odd = 0;
-            notOdd = 0;
-            cnt = 0;
-            while (cnt++ < i)
+            int b; //число для деления
+
+
+            int ChetnihDigits;//четный
+            int NechetDigits;//нечетные
+            int arraySize;
+            int[] array;
+
+            arraySize = 0;
+            p = 0;
+            while (p <= x)
             {
-                if (cnt % 2 == 1)
-                    odd += cnt;
-                else
-                    notOdd += cnt;
+                b = p;
+                ChetnihDigits = 0;
+                NechetDigits = 0;
+                while (b != 0)
+                {
+                    if ((b % 10) % 2 == 0)
+                        ChetnihDigits += b % 10;
+                    else
+                        NechetDigits += b % 10;
+                    b /= 10;
+                }
+                if (ChetnihDigits >= NechetDigits)
+                    arraySize++;
+                p++;
             }
-            return (notOdd - odd);
+            int lenghtArray = 0;
+            array = new int[arraySize];
+            p = 0;
+            while (p <= x)
+            {
+                b = p;
+                ChetnihDigits = 0;
+                NechetDigits = 0;
+                while (b != 0)
+                {
+                    if ((b % 10) % 2 == 0)
+                        ChetnihDigits += b % 10;
+                    else
+                        NechetDigits += b % 10;
+                    b /= 10;
+                }
+                if (ChetnihDigits > NechetDigits)
+                {
+                    array[lenghtArray] = p;
+                    lenghtArray++;
+                }
+                p++;
+            }
+            return array;
         }
     }
 }

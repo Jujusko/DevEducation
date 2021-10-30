@@ -10,13 +10,8 @@ namespace DevEducation
             // Если будет нужно, для простоты можно написать тестер какой-нибудь
             // с рандомными кейсами, если еще и ввести стандарт на название прототипов,
             // то хоть для всей группы сделать можно
-            int[] a = Debug1.GetNumbersWhereSumOfEvenDigitsGreaterThanOddDigits(40);
-            int i = 0;
-            while(i < a.Length)
-            {
-                Console.Write(a[i] + " ");
-                i++;
-            }
+            bool a = Loops.Dubs.FindDubs(417, 963548);
+            Console.WriteLine(a);
         }
       
     }

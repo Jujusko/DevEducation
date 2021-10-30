@@ -13,6 +13,13 @@ namespace DevEducation.Loops
             double res;
 
             res = 1;
+            if (a == 0)
+            {
+                if (b == 0)
+                    return res;
+                else
+                    return 0;
+            }
             if (b == 0)
                 return 1;
             else if (b > 0)

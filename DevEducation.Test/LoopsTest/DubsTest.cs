@@ -16,7 +16,7 @@ namespace DevEducation.Test.LoopsTest
         [TestCase(0, 0, true)]
         public static void FindDubsTest(int a, int b, bool expected)
         {
-            bool actual = Loops.Dubs.FindDubs(a, b);
+            bool actual = Loops.DubsDigitsInTwoNumbs.FindDubs(a, b);
             Assert.AreEqual(expected, actual);
         }
 

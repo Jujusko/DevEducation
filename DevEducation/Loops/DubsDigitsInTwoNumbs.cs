@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    public class Dubs
+    public class DubsDigitsInTwoNumbs
     {
         //task 12
         public static bool FindDubs(int a, int b)
@@ -15,14 +15,7 @@ namespace DevEducation.Loops
             int tmp;
             int tmp2;
             int tmp3;
-            /*
-            if (a < b)
-            {
-                tmp = a;
-                a = b;
-                b = tmp;
-            }
-            */
+
             if (b < a)
             {
                 tmp = a;

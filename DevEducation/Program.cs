@@ -10,7 +10,7 @@ namespace DevEducation
             // Если будет нужно, для простоты можно написать тестер какой-нибудь
             // с рандомными кейсами, если еще и ввести стандарт на название прототипов,
             // то хоть для всей группы сделать можно
-            bool a = Loops.Dubs.FindDubs(417, 963548);
+            int a = Loops.Fibonacci.FindFiboByIndex(0);
             Console.WriteLine(a);
         }
       

@@ -10,6 +10,8 @@ namespace DevEducation.Loops
     {
         public static int BiggestDiv(int a, int b)
         {
+            if (a <= 0 || b <= 0)
+                throw new ArgumentException("Not valid content here");
             while(a != 0 && b != 0)
             {
                 if (a > b)

@@ -12,7 +12,6 @@ namespace DevEducation.Loops
         {
             int maxNumber;
 
-            Console.WriteLine("Task 3");
             maxNumber = 1;
             while (maxNumber * maxNumber < a)
                 maxNumber++;

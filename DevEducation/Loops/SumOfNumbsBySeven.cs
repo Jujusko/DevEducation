@@ -14,17 +14,17 @@ namespace DevEducation.Loops
             int res;
 
             res = 0;
-            Console.WriteLine("Task 5");
             if (a > b)
             {
                 tmp = a;
                 a = b;
                 b = tmp;
             }
-            while (a++ < b)
+            while (a < b)
             {
                 if (a % 7 == 0)
                     res += a;
+                a++;
             }
             return res;
         }

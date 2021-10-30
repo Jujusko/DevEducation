@@ -10,19 +10,17 @@ namespace DevEducation.Loops
     {
         public static int[] WTFIdkWhatIshouldToDo(int x)
         {
-            int p;//точка отсчета
-
-            int b; //число для деления
-
-
-            int ChetnihDigits;//четный
-            int NechetDigits;//нечетные
+            int p;
+            int b; 
+            int ChetnihDigits;
+            int NechetDigits;
             int arraySize;
             int[] array;
+            int lenghtArray;
 
             arraySize = 0;
-            p = 0;
-            while (p <= x)
+            p = -1;
+            while (++p <= x)
             {
                 b = p;
                 ChetnihDigits = 0;
@@ -35,11 +33,11 @@ namespace DevEducation.Loops
                         NechetDigits += b % 10;
                     b /= 10;
                 }
-                if (ChetnihDigits >= NechetDigits)
+                if (ChetnihDigits > NechetDigits)
                     arraySize++;
-                p++;
+              
             }
-            int lenghtArray = 0;
+            lenghtArray = 0;
             array = new int[arraySize];
             p = 0;
             while (p <= x)

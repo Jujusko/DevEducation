@@ -13,24 +13,27 @@ namespace DevEducation.Loops
             int cnt;
             int range;
             int []all_nubs;
+            int step;
 
-            
-            range = a;
+            range = 0;
+            step = a;
             cnt = 0;
-            while (range++ <= 1000)
+            while (range < 1000)
             {
-                if (range % a == 0)
+                range += step;
                     cnt++;
             }
+            if (range > 1000)
+                cnt--;
             all_nubs = new int[cnt];
             cnt = 0;
-            while (range++ <= 1000)
+            range = 0;
+            while (range + step <= 1000)
             {
-                if (range % a == 0)
-                {
-                    all_nubs[cnt] = range;
-                    cnt++;
-                }
+                if (range <= 1000)
+                    all_nubs[cnt] = range + step;
+                cnt++;
+                range += step;
             }
             return all_nubs;
         }

@@ -14,7 +14,9 @@ namespace DevEducation.Loops
             int cnt;
 
             cnt = 0;
-            while(a / 10 > 0)
+            if (a < 0)
+                a *= -1;
+            while(a > 0)
             {
                 if ((a % 10) % 2 == 1)
                     cnt++;

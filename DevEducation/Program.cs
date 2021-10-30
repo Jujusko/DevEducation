@@ -10,9 +10,19 @@ namespace DevEducation
             // Если будет нужно, для простоты можно написать тестер какой-нибудь
             // с рандомными кейсами, если еще и ввести стандарт на название прототипов,
             // то хоть для всей группы сделать можно
-            int a = Loops.Fibonacci.FindFiboByIndex(0);
-            Console.WriteLine(a);
+            //int a = Loops.Fibonacci.FindFiboByIndex(0);
+         
+            int[] actual = Loops.Multiples.FindMultiples(1000);
+           int  cnt = 0;
+            while (cnt < actual.Length)
+            {
+                Console.Write(actual[cnt] + ",");
+                cnt++;
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(actual.Length);
         }
-      
+
     }
 }

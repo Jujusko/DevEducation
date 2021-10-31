@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Arrays
 {
-    class PartOne
+     public class PartOne
     {
         public static int FindMinNumb(int []array) 
         {
@@ -25,18 +25,18 @@ namespace DevEducation.Arrays
         }
         public static int FindMaxNumb(int[] array)
         {
-            int min;
+            int max;
             int cnt;
 
-            min = array[0];
+            max = array[0];
             cnt = 0;
             while (cnt < array.Length)
             {
-                if (min < array[cnt])
-                    min = array[cnt];
+                if (max < array[cnt])
+                    max = array[cnt];
                 cnt++;
             }
-            return min;
+            return max;
         }
 
         public static int FindIndexMinNumb(int[] array)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Arrays
 {
-    class SomeSorts
+    public class SomeSorts
     {
             //half = 0;
         public static int[] BubbleSort(int[] array)

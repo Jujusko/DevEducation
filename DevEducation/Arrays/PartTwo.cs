@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Arrays
 {
-    class PartTwo
+    public class PartTwo
     {
         public static int GetSummNumbsOddIndexes(int[] array)
         {
             int sum;
             int cnt;
 
-            cnt = 0;
+            cnt = -1;
             sum = 0;
-            while (cnt < array.Length)
+            while (++cnt < array.Length)
             {
                 if ((cnt + 1) % 2 != 0)
                     sum += array[cnt];
@@ -24,7 +24,6 @@ namespace DevEducation.Arrays
         }
         public static int[] ReverseArray(int[] array)
         {
-            int sum;
             int cnt;
             int tmp;
 
@@ -32,22 +31,22 @@ namespace DevEducation.Arrays
             while(cnt < (array.Length / 2))
             {
                 tmp = array[cnt];
-                array[cnt] = array[array.Length - cnt];
-                array[array.Length - cnt] = tmp;
+                array[cnt] = array[array.Length - cnt - 1];
+                array[array.Length - cnt - 1] = tmp;
                 cnt++;
             }
             return array;
         }
-        public static int GetSummOddIndexes(int[] array)
+        public static int GetSummNonOddIndexes(int[] array)
         {
             int sum;
             int cnt;
 
-            cnt = 0;
+            cnt = -1;
             sum = 0;
-            while (cnt < array.Length)
+            while (++cnt < array.Length)
             {
-                if ((cnt + 1) % 2 != 0)
+                if ((cnt + 1) % 2 == 0)
                     sum+= array[cnt];
             }
             return sum;

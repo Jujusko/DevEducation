@@ -17,8 +17,10 @@ namespace DevEducation.Test.SomeMocks
     }
     public class ArrayMock
     {
-        public static int[] Arrays(Flags flag, int[] array)
+        public static int[] Arrays(Flags flag)
         {
+            int[] array = new int[] { };
+
             if (flag == Flags.Usual1)
                 array = new int[10] { 1, 2, 3, 5, 22, -23, 45, 333, -12345, 0 };
             else if (flag == Flags.Usual2)

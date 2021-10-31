@@ -14,6 +14,7 @@ namespace DevEducation.Test.LoopsTest
         [TestCase(51, new int[] { 51, 102, 153, 204, 255, 306, 357, 408, 459, 
             510, 561, 612, 663, 714, 765, 816, 867, 918, 969})]
         [TestCase(1000, new int[] {1000})]
+        [TestCase(999, new int[] { 999 })]
         public static void FindMultiplesTEst(int a, int[] expected)
         {
             int cnt;

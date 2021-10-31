@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.Loops
 {
-    public class Task8
+    public class BinarySearch
     {
         public static double Cube(double x)
         {
@@ -19,13 +19,11 @@ namespace DevEducation.Loops
             else
                 return x;
         }
-        public static double HalfDivMethod()
+        public static double HalfDivMethod(int n_first)
         {
-            int n_first;
             double a, b, n_second;
             double x;
             double tmp1, tmp2, tmp3;
-            n_first = Convert.ToInt32(Console.ReadLine());
             a = 1;
             b = n_first;
             x = (b + a) / 2;

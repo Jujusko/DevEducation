@@ -14,7 +14,7 @@ namespace DevEducation.Loops
             int mirror;
 
             mirror = 0;
-            while(a / 10 > 0)
+            while(a > 0)
             {
                 mirror = (a % 10) + mirror * 10;
                 a /= 10;

@@ -21,7 +21,5 @@ namespace DevEducation.Test.LoopsTest
             double expected = Loops.APowB.DoAPowB(a, b);
             Assert.AreEqual(actual, expected);
         }
-
-
     }
 }

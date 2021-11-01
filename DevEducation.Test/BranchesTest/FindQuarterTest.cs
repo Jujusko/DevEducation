@@ -21,5 +21,11 @@ namespace DevEducation.Test.BranchesTest
             actual = Branches.FindQuarter.ReturnQuarter(a, b);
             Assert.AreEqual(actual, expected);
         }
+
+        [TestCase(0, 0)]
+        public static void ReturnQUarterNegativeTest(int a, int b)
+        {
+            Assert.Throws<ArgumentException>(() => Branches.FindQuarter.ReturnQuarter(a, b));
+        }
     }
 }

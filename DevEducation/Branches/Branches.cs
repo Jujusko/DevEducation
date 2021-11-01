@@ -20,10 +20,7 @@ namespace DevEducation.Branches
                 if (a <= 46340)
                     return (a * b);
                 else
-                {
-                    Console.WriteLine("Too big number");
-                    return (-1);
-                }
+                    throw new ArgumentException("Too big number");
             }
         }
     }

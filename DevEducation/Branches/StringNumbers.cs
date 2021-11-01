@@ -52,7 +52,7 @@ namespace DevEducation.Branches
                     toReturnNumb += StringNumb[a % 10];
             }
             else
-                toReturnNumb = "Error. Put Number less than 100";
+                throw new ArgumentException("Bad number!");
             return toReturnNumb;
         }
     }

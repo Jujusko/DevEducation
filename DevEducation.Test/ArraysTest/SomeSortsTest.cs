@@ -22,7 +22,7 @@ namespace DevEducation.Test.ArraysTest
             actual = Arrays.SomeSorts.BubbleSort(SomeMocks.ArrayMock.Arrays(op));
             while (cnt < actual.Length)
             {
-                Assert.AreEqual(actual[cnt], expected[cnt]);
+                Assert.AreEqual(actual[cnt], expected[expected.Length - cnt - 1]);
                 cnt++;
             }
         }

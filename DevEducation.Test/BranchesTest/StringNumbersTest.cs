@@ -21,5 +21,12 @@ namespace DevEducation.Test.BranchesTest
             actual = Branches.StringNumbers.GetString(a);
             Assert.AreEqual(actual, expected);
         }
+
+        [TestCase(12222)]
+        [TestCase(-12222)]
+        public static void GetStringNegativeTest(int a)
+        {
+            Assert.Throws<ArgumentException>(() => Branches.StringNumbers.GetString(a));
+        }
     }
 }

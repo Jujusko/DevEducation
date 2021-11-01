@@ -19,17 +19,17 @@ namespace DevEducation.Arrays
             while (cnt < array.Length - 2)
             {
                 cnt++;
-                if (array[cnt] > array[cnt + 1])
+                if (array[cnt] < array[cnt + 1])
                 {
                     tmp = array[cnt];
                     array[cnt] = array[cnt + 1];
                     array[cnt + 1] = tmp;
                     cnt = -1;
                 }
-                
             }
             return array;
         }
+        #region Utils For Select Sort
         //Util method to help with Select Sort
         static int[] NewArray(int []ar, int index)
         {
@@ -75,6 +75,7 @@ namespace DevEducation.Arrays
             return (minNumb, index);
         }
         //      End utils
+        #endregion
         public static int[] SelectSort(int[] array)
         {
             int minNumb;
@@ -82,7 +83,7 @@ namespace DevEducation.Arrays
             int newCnt;
             int arLenght;
 
-            int[] newAr = new int[10];
+            int[] newAr = new int[array.Length];
             newCnt = 0;
             arLenght = array.Length;
             while(arLenght != 1)

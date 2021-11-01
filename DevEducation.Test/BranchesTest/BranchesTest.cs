@@ -22,5 +22,11 @@ namespace DevEducation.Test
             actual = Branches.Branches.AnaliseAAndB(a, b);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(463402, 463402)]
+        public void AnanliseAAndBNegativeTest(int a, int b)
+        {
+            Assert.Throws<ArgumentException>(() => Branches.Branches.AnaliseAAndB(a, b));
+        }
     }
 }

@@ -15,10 +15,7 @@ namespace DevEducation.Branches
 
             disc = b * b - (4 * a * c);
             if (disc < 0)
-            {
-                Console.WriteLine("No solutions");
-                return (-1, -1);
-            }
+                throw new ArithmeticException("disc is below zero");
             x1 = (-b + Math.Sqrt(disc)) / (2 * a);
             x2 = (-b - Math.Sqrt(disc)) / (2 * a);
             return (x1, x2);

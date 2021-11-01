@@ -22,7 +22,8 @@ namespace DevEducation.Branches
                 else if (a < 0 && b > 0)
                     return 4;
             }
-            Console.WriteLine("You took centre");
+           if (a == 0 && b == 0)
+                throw new ArgumentException("You took centre");
             return -1;
         }
     }

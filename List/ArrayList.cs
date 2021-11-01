@@ -16,7 +16,21 @@ namespace List
             Lenght = 0;
             _array = new int[_minArrayLenght];
         }
-
+        public ArrayList(int lenght)
+        {
+            Lenght = lenght;
+            if (Lenght > _minArrayLenght)
+            {
+                _array = new int[Lenght + 1];
+            }
+            else
+                _array = new int[_minArrayLenght];
+        }
+        public ArrayList(int [] array)
+        {
+            Lenght = 0;
+            _array = array;
+        }
 
         private void UpArraySize()
         {
@@ -111,6 +125,8 @@ namespace List
             int cnt;
             int tmp;
 
+            if (Lenght + 1 >= _array.Length)
+                UpArraySize();
             cnt = index;
             while (cnt < Lenght)
             {
@@ -300,6 +316,40 @@ namespace List
                 cnt++;
             }
             return amount;
+        }
+
+        public void AddOwnListAtFront(int[] array)
+        {
+            //Нужен массив в аргументы или другой объект этого класса?
+            int cnt;
+
+            cnt = -1;
+            while (++cnt < array.Length)
+            {
+                AddFront(array[cnt]);
+            }
+        }
+        public void AddOwnListAtBack(int[] array)
+        {
+            int cnt;
+
+            cnt = array.Length - 1;
+            while (cnt != -1)
+            {
+                ListAddBack(array[cnt]);
+                cnt--;
+            }
+        }
+        public void AddOwnListAtByIndex(int[] array, int index)
+        {
+            int cnt;
+
+            cnt = -1;
+            while (++cnt < array.Length)
+            {
+                Console.WriteLine(array[cnt]);
+                AddByIndex(index++,array[cnt]);
+            }
         }
     }
 }

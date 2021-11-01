@@ -7,6 +7,7 @@ namespace ListTest
     {
         static void Main(string[] args)
         {
+            int[] b = new int[] { 4, 5, 2, 6};
             List.ArrayList a = new ArrayList();
             a.AddFront(0);
             a.AddFront(1);
@@ -17,11 +18,14 @@ namespace ListTest
             a.AddFront(984);
             a.AddFront(7);
             a.AddFront(8);
+            a.DeleteAtEnd();
             a.AddFront(9);
             a.AddFront(45);
             a.WriteToConsole();
-            a.DeleteFirstElemByContent(5);
+            a.AddOwnListAtByIndex(b, 1);
             a.WriteToConsole();
         }
     }
 }
+//0 1 22 44 5 2 984 7 8 9 45 
+//0 1 22 44 2 984 7 8 9 45

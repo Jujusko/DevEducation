@@ -20,7 +20,7 @@ namespace DevEducation.Loops
                 a = b;
                 b = tmp;
             }
-            while (a < b)
+            while (a <= b)
             {
                 if (a % 7 == 0)
                     res += a;

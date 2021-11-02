@@ -9,7 +9,7 @@ namespace DevEducation.Test.BranchesTest
 {
     class FindQuarterTest
     {
-        [TestCase(0, 0, -1)]
+        [TestCase(-6, 34, 4)]
         [TestCase(1, 1, 1)]
         [TestCase(214736471, 214836471, 1)]
         [TestCase(-21483647, 0, -1)]

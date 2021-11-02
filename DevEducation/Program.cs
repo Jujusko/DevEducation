@@ -12,14 +12,25 @@ namespace DevEducation
             // то хоть для всей группы сделать можно
             //int a = Loops.Fibonacci.FindFiboByIndex(0);
 
-           int[] actual = new int[10];
-            int cnt = 0;
-            while(cnt < actual.Length)
-           {
-                Console.Write(actual[cnt] + ", ");
-                cnt++;
+           int[,] actual = new int[6,3];
+            int i = 0;
+            int j = 0;
+            Random r = new();
+            Console.WriteLine("{");
+            while (i < actual.GetLength(0))
+            {
+                Console.Write("{ ");
+                j = 0;
+                while (j < actual.GetLength(1))
+                {
+                    actual[i, j] = r.Next(2,2);
+                    Console.Write(actual[i, j] + ", ");
+                    j++;
+                }
+                Console.WriteLine("},");
+                i++;
             }
-
+            Console.WriteLine("}");
         }
 
     }

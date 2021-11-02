@@ -9,11 +9,11 @@ namespace DevEducation.Test.LoopsTest
 {
     class SumOfNumbsBySevenTest
     {
-        [TestCase(0, 7, 7)]
-        [TestCase(14, 7, 14)]
+        [TestCase(7, 7, 7)]
+        [TestCase(14, 7, 21)]
         [TestCase(-123, 0, -1071)]
         [TestCase(0, 6, 0)]
-        [TestCase(123, 7, 1064)]
+        [TestCase(123, 7, 1071)]
         public static void GetSumDivsBySevenTest(int a, int b, int expected)
         {
             int actual;

@@ -11,9 +11,10 @@ namespace DevEducation.Test.BranchesTest
     {
         [TestCase(1, "Один")]
         [TestCase(2, "Два")]
-        [TestCase(0, "Error. Put Number less than 100")]
-        [TestCase(-123, "Error. Put Number less than 100")]
-        [TestCase(10000, "Error. Put Number less than 100")]
+        [TestCase(31, "ТридцатьОдин")]
+        [TestCase(21, "ДвадцатьОдин")]
+        [TestCase(40, "Сорок")]
+
         public static void GetStringTest(int a, string expected)
         {
             string actual;

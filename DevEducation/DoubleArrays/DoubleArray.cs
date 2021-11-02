@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevEducation.DoubleArrays
 {
-    class DoubleArray
+    public class DoubleArray
     {
         public static int FindMaxNumber(int[,] arr)
         {
@@ -14,11 +14,13 @@ namespace DevEducation.DoubleArrays
             int maxNumb;
 
             i = 0;
+            if (arr.GetLength(0) == 0 || arr.GetLength(1) == 0)
+                throw new ArgumentException("Array does not exist");
             maxNumb = arr[0, 0];
-            while (i < 5)
+            while (i < arr.GetLength(0))
             {
                 j = 0;
-                while (j < 10)
+                while (j < arr.GetLength(1))
                 {
                     if (maxNumb < arr[i, j])
                         maxNumb = arr[i, j];
@@ -35,6 +37,8 @@ namespace DevEducation.DoubleArrays
             int minNumb;
 
             i = 0;
+            if (arr.GetLength(0) == 0 || arr.GetLength(1) == 0)
+                throw new ArgumentException("Array does not exist");
             minNumb = arr[0, 0];
             while (i < arr.GetLength(0))
             {
@@ -59,6 +63,8 @@ namespace DevEducation.DoubleArrays
 
             i = 0;
             index = (0, 0);
+            if (arr.GetLength(0) == 0 || arr.GetLength(1) == 0)
+                throw new ArgumentException("Array does not exist");
             maxNumb = arr[0, 0];
             while (i < arr.GetLength(0))
             {
@@ -85,6 +91,8 @@ namespace DevEducation.DoubleArrays
 
             i = 0;
             index = (0, 0);
+            if (arr.GetLength(0) == 0 || arr.GetLength(1) == 0)
+                throw new ArgumentException("Array does not exist");
             minNumb = arr[0, 0];
             while (i < arr.GetLength(0))
             {

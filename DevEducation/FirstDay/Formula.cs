@@ -20,5 +20,10 @@ namespace DevEducation.FirstDay
             res = (5 * a + b * b) / (b - a);
             Console.WriteLine(res);
         }
+        public static int GetNumberdividetwo(int a)
+        {
+            int b = a / 2;
+            return b;
+        }
     }
 }

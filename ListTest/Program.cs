@@ -7,23 +7,14 @@ namespace ListTest
     {
         static void Main(string[] args)
         {
-            int[] b = new int[] { 4, 5, 2, 6};
-            List.ArrayList a = new ArrayList();
-            a.AddFront(0);
-            a.AddFront(1);
-            a.AddFront(22);
-            a.AddFront(44);
-            a.AddFront(5);
-            a.AddFront(2);
-            a.AddFront(984);
-            a.AddFront(7);
-            a.AddFront(8);
-            a.DeleteAtEnd();
-            a.AddFront(9);
-            a.AddFront(45);
-            a.WriteToConsole();
-            a.AddOwnListAtByIndex(b, 1);
-            a.WriteToConsole();
+
+            int[] k = new int[] { 0, 1, 2, 3, 5, 22 };
+            ArrayList kkk = new ArrayList(k);
+            ArrayList q = new ArrayList(k);
+            q.WriteToConsole();
+            kkk.WriteToConsole();
+            kkk.DeleteAtHead();
+            kkk.WriteToConsole();
         }
     }
 }

@@ -10,7 +10,20 @@ namespace List
         private const int _minArrayLenght = 10;
 
         private int[] _array;
+        public int this[int index]
+        {
+            get
+            {
+                return _array[index];
+            }
+            set
+            {
+                _array[index] = value;
+            }
+        }
 
+
+        #region Constructors
         public ArrayList()
         {
             Lenght = 0;
@@ -28,15 +41,23 @@ namespace List
         }
         public ArrayList(int [] array)
         {
-            Lenght = 0;
-            _array = array;
+            
+            _array = new int[array.Length];
+           Array.Copy(array, _array, array.Length);
+            Lenght = array.Length;
         }
+        #endregion
+
+
 
         private void UpArraySize()
         {
-            int[] tmpArray = new int[(int)(Lenght * 1.5)];
+            
+            int[] tmpArray = new int[(int)(Lenght * 1.5 + 10)];
             for (int i = 0; i < Lenght; i++)
             {
+                if (i == _array.Length)
+                    break;
                 tmpArray[i] = _array[i];
             }
             _array = tmpArray;
@@ -44,7 +65,7 @@ namespace List
 
         public void AddFront (int value)
         {
-            if (Lenght == _array.Length)
+            if (Lenght >= _array.Length)
             {
                 UpArraySize();
             }
@@ -109,6 +130,8 @@ namespace List
             int cnt;
             int tmp;
 
+            if (Lenght == _array.Length)
+                UpArraySize();
             cnt = 0;
             while(cnt < Lenght)
             {
@@ -350,6 +373,32 @@ namespace List
                 Console.WriteLine(array[cnt]);
                 AddByIndex(index++,array[cnt]);
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            int i;
+
+            ArrayList array = (ArrayList)obj;
+            if (Lenght != array.Lenght)
+                return false;
+            i = 0;
+            while (i < Lenght)
+            {
+                if (array._array[i] != _array[i])
+                    return false;
+                i++;
+            }
+            return true;
+        }
+        public override string ToString()
+        {
+            string s = "";
+            for (int i = 0; i < Lenght; i++)
+            {
+                s += $"{_array[i]} ";
+            }
+            return s;
         }
     }
 }

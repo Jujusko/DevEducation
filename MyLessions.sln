@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevEducation", "DevEducatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevEducation.Test", "DevEducation.Test\DevEducation.Test.csproj", "{4CCB6826-EEBA-472A-AC37-B6064870DA8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List", "List\List.csproj", "{266CEE77-9712-4088-8E93-C2189ED56539}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "List", "List\List.csproj", "{266CEE77-9712-4088-8E93-C2189ED56539}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTest", "ListTest\ListTest.csproj", "{276AAD91-B42B-4AA8-B7E2-4F25BA858FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListTest", "ListTest\ListTest.csproj", "{276AAD91-B42B-4AA8-B7E2-4F25BA858FCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTests", "ListTests\ListTests.csproj", "{ABDC5CBE-B436-4D69-B828-2749A0191A78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{276AAD91-B42B-4AA8-B7E2-4F25BA858FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{276AAD91-B42B-4AA8-B7E2-4F25BA858FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{276AAD91-B42B-4AA8-B7E2-4F25BA858FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDC5CBE-B436-4D69-B828-2749A0191A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDC5CBE-B436-4D69-B828-2749A0191A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDC5CBE-B436-4D69-B828-2749A0191A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDC5CBE-B436-4D69-B828-2749A0191A78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

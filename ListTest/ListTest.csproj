@@ -9,6 +9,7 @@
     <ProjectReference Include="..\DevEducation.Test\DevEducation.Test.csproj" />
     <ProjectReference Include="..\DevEducation\DevEducation.csproj" />
     <ProjectReference Include="..\List\List.csproj" />
+    <ProjectReference Include="..\Nodes\Nodes.csproj" />
   </ItemGroup>
 
 </Project>

@@ -341,36 +341,42 @@ namespace List
             return amount;
         }
 
-        public void AddOwnListAtFront(int[] array)
+        public void AddOwnListAtFront(ArrayList array)
         {
             //Нужен массив в аргументы или другой объект этого класса?
             int cnt;
+            int lenAr;
 
+            lenAr = array.GetLenght();
             cnt = -1;
-            while (++cnt < array.Length)
+            while (++cnt <lenAr)
             {
                 AddFront(array[cnt]);
             }
         }
-        public void AddOwnListAtBack(int[] array)
+        public void AddOwnListAtBack(ArrayList array)
         {
             int cnt;
+            int lenAr;
 
-            cnt = array.Length - 1;
+            
+            lenAr = array.GetLenght();
+            cnt = lenAr - 1;
             while (cnt != -1)
             {
                 ListAddBack(array[cnt]);
                 cnt--;
             }
         }
-        public void AddOwnListAtByIndex(int[] array, int index)
+        public void AddOwnListAtByIndex(ArrayList array, int index)
         {
             int cnt;
+            int lenAr;
 
+            lenAr = array.GetLenght();
             cnt = -1;
-            while (++cnt < array.Length)
+            while (++cnt < lenAr)
             {
-                Console.WriteLine(array[cnt]);
                 AddByIndex(index++,array[cnt]);
             }
         }

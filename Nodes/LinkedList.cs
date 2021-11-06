@@ -263,8 +263,73 @@ namespace Nodes
                 }
                 //Console.WriteLine(" равен  " + tmp2.Next.Index);
             }
+            
         }
-        
+
+        public Node GetMaxContent()
+        {
+            Node neededNode;
+            Node tmp;
+
+            tmp = _root;
+            neededNode = null;
+            while (tmp.Next != null)
+            {
+                if (tmp.Value < tmp.Next.Value)
+                    neededNode = tmp;
+                tmp = tmp.Next;
+            }
+            return neededNode;
+        }
+        public Node GetMinContent()
+        {
+            Node neededNode;
+            Node tmp;
+
+            tmp = _root;
+            neededNode = null;
+            while (tmp.Next != null)
+            {
+                if (tmp.Value > tmp.Next.Value)
+                    neededNode = tmp;
+                tmp = tmp.Next;
+            }
+            return neededNode;
+        }
+
+        public int GetMaxContentIndex()
+        {
+            Node neededNode;
+            Node tmp;
+            SetSomeData();
+
+            tmp = _root;
+            neededNode = null;
+            while (tmp.Next != null)
+            {
+                if (tmp.Value < tmp.Next.Value)
+                    neededNode = tmp;
+                tmp = tmp.Next;
+            }
+            return neededNode.Index;
+        }
+
+        public int GetMinContentIndex()
+        {
+            Node neededNode;
+            Node tmp;
+            SetSomeData();
+
+            tmp = _root;
+            neededNode = null;
+            while (tmp.Next != null)
+            {
+                if (tmp.Value > tmp.Next.Value)
+                    neededNode = tmp;
+                tmp = tmp.Next;
+            }
+            return neededNode.Index;
+        }
         #endregion
 
 

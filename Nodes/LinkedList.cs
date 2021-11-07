@@ -104,12 +104,19 @@ namespace Nodes
                 _root = _root.Next;
                 return;
             }
-            while (tmp.Next.Index != index)
+            if (index != _root.MaxIndex)
             {
-                tmp = tmp.Next;
+                while (tmp.Next.Index != index)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp2 = tmp.Next.Next;
+                tmp.Next = tmp2;
             }
-            tmp2 = tmp.Next.Next;
-            tmp.Next = tmp2;
+            else if (index == _root.MaxIndex)
+            {
+                DeleteFromEnd();
+            }
             SetSomeData();
         }
 
@@ -270,9 +277,9 @@ namespace Nodes
         {
             Node neededNode;
             Node tmp;
-
+            SetSomeData();
             tmp = _root;
-            neededNode = null;
+            neededNode = tmp;
             while (tmp.Next != null)
             {
                 if (tmp.Value < tmp.Next.Value)
@@ -287,11 +294,11 @@ namespace Nodes
             Node tmp;
 
             tmp = _root;
-            neededNode = null;
+            neededNode = tmp;
             while (tmp.Next != null)
             {
                 if (tmp.Value > tmp.Next.Value)
-                    neededNode = tmp;
+                    neededNode = tmp.Next;
                 tmp = tmp.Next;
             }
             return neededNode;
@@ -365,6 +372,54 @@ namespace Nodes
                 tmp.MaxIndex = index;
                 tmp = tmp.Next;
             }
+        }
+        #endregion
+
+        #region methods to sort list
+
+        public void SortFromMinToMax ()
+        {
+            Node head;
+            Node saveMin;
+            Node tmp;
+            Node treat;
+
+            saveMin = GetMinContent();
+            DeleteByIndex(saveMin.Index);
+            head = saveMin;
+            treat = head;
+            tmp = _root;
+            while (tmp.Next != null)
+            {
+                saveMin = GetMinContent();
+                head.Next = saveMin;
+                head = head.Next;
+                DeleteByIndex(saveMin.Index);
+                tmp = _root;
+            }
+            _root = treat;
+        }
+        public void SortFromMaxToMin()
+        {
+            Node head;
+            Node saveMax;
+            Node tmp;
+            Node treat;
+
+            saveMax = GetMaxContent();
+            DeleteByIndex(saveMax.Index);
+            head = saveMax;
+            treat = head;
+            tmp = _root;
+            while (tmp.Next != null)
+            {
+                saveMax = GetMaxContent();
+                head.Next = saveMax;
+                head = head.Next;
+                DeleteByIndex(saveMax.Index);
+                tmp = _root;
+            }
+            _root = treat;
         }
         #endregion
     }

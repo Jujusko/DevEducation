@@ -18,19 +18,7 @@ namespace ListTest
             lisst.AddFront(4);
             lisst.AddFront(5);
             lisst.AddFront(11);
-            lisst.AddFront(22);
-            lisst.AddFront(33);
-            lisst.AddFront(323);
-            lisst.AddFront(22);
-            lisst.AddFront(33);
-            lisst.AddFront(323);
-            lisst.AddFront(22);
-            lisst.AddFront(33);
-            lisst.AddFront(323);
-            lisst.AddFront(22);
-            lisst.AddFront(33);
-            lisst.AddFront(323);
-            lisst.AddFront(777);
+            
             lisst.AddBack(-1);
             lisst.WriteContent();
             lisst.AddByIndex(1, 999);
@@ -39,7 +27,12 @@ namespace ListTest
             lisst.WriteContent();
             lisst.ReverseList();
             lisst.WriteContent();
-            
+            lisst.SortFromMinToMax();
+            lisst.WriteContent();
+            lisst.SortFromMaxToMin();
+            Console.WriteLine("OK");
+            lisst.WriteContent();
+
             //Console.WriteLine(lisst.GetIndexByContent(5));
         }
     }

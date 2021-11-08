@@ -1,18 +1,18 @@
 using NUnit.Framework;
+using Nodes;
 
 namespace LinkedListTests
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        [TestCase(2, 4)]
+       public void AddTest(int a, int addValue)
         {
-        }
-
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
+            Node expected = new Node(a);
+            expected.Next = new Node(addValue);
+            LinkedList actual = new LinkedList(1);
+            actual.AddFront(addValue);
+            Assert.AreEqual(actual, expected);
+        }   
     }
 }

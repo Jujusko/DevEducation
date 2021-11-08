@@ -10,7 +10,6 @@ namespace ListTest
         {
 
             Node a = new Node(12);
-            
             LinkedList lisst = new LinkedList(1);
             lisst.WriteContent();
             lisst.AddFront(2);
@@ -34,9 +33,10 @@ namespace ListTest
             lisst.ReverseList();
             lisst.WriteContent();
 
-
+            LinkedList aaa = new LinkedList();
+            Console.WriteLine(aaa);
             lisst.WriteContent();
-
+            Console.WriteLine(lisst);
             //Console.WriteLine(lisst.GetIndexByContent(5));
         }
     }

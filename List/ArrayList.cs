@@ -10,6 +10,8 @@ namespace List
         private const int _minArrayLenght = 10;
 
         private int[] _array;
+        ArrayList a = new ArrayList(12);
+        
         public int this[int index]
         {
             get

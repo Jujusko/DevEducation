@@ -413,5 +413,40 @@ namespace Nodes
             _root = treat;
         }
         #endregion
+
+        public override bool Equals(object obj)//obj = actual
+        {
+
+            Node myNode = (Node)obj;
+
+            while (myNode != null)
+            {
+                if (myNode.Value != _root.Value)
+                    return false;
+                if (_root == null && myNode != null)
+                    return false;
+                if (_root != null && myNode == null)
+                    return false;
+
+                myNode = myNode.Next;
+                _root = _root.Next;
+            }
+            return true;
+        }
+        
+        public override string ToString()
+        {
+            string s = "";
+            if (_root == null)
+                return s;
+            Node myNode = _root;
+            while (myNode != null)
+            {
+                s += myNode.Value + " ";
+                myNode = myNode.Next;
+            }
+            return s;
+        }
+        
     }
 }

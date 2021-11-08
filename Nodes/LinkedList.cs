@@ -234,41 +234,29 @@ namespace Nodes
             while (tmp2.Next != null)
             {
                 tmp2.Next = tmp1;//2 на 1 .. 5 na 4
-                //Console.WriteLine("теперь индекс " + tmp2.Index + " указывает на "+ tmp1.Index);
-                //Console.Write("теперь индекс " + tmp1.Index);
                 tmp1 = tmp3.Next;//now 4 .. now 7
                 if (tmp3.Next == null)
                 {
                     tmp3.Next = tmp2;
-                   // Console.WriteLine(tmp3.Value + " " + tmp2.Value + " ");
                     _root = tmp3;
                     break;
                 }
-                    //Console.WriteLine(" равен  " + tmp3.Next.Index);
                 tmp3.Next = tmp2;//3 na 2 .. 6 na 5
-                //Console.WriteLine("теперь индекс " + tmp3.Index + " указывает на  " + tmp2.Index);
-                //Console.Write("теперь индекс " + tmp2.Index);
                 tmp2 = tmp1.Next;//now 5 .. 
                 if (tmp1.Next == null)
                 {
                     tmp1.Next = tmp3;
-                    //Console.WriteLine(tmp1.Value + " " + tmp3.Value + " ");
                     _root = tmp1;
                     break;
                 }
-                //Console.WriteLine(" равен  " + tmp1.Next.Index);
                 tmp1.Next = tmp3;//4 na 3
-                //Console.WriteLine("теперь индекс " + tmp1.Index + " указывает на   " + tmp3.Index);
-                //Console.Write("теперь индекс " + tmp3.Index);
                 tmp3 = tmp2.Next;//now 6
                 if (tmp2.Next == null)
                 {
-                   // Console.WriteLine(tmp1.Value + " " + tmp2.Value + " ");
                     tmp2.Next = tmp1;
                     _root = tmp2;
                     break;
                 }
-                //Console.WriteLine(" равен  " + tmp2.Next.Index);
             }
             
         }
@@ -280,9 +268,9 @@ namespace Nodes
             SetSomeData();
             tmp = _root;
             neededNode = tmp;
-            while (tmp.Next != null)
+            while (tmp != null)
             {
-                if (tmp.Value < tmp.Next.Value)
+                if (neededNode.Value < tmp.Value)
                     neededNode = tmp;
                 tmp = tmp.Next;
             }
@@ -389,7 +377,7 @@ namespace Nodes
             head = saveMin;
             treat = head;
             tmp = _root;
-            while (tmp.Next != null)
+            while (tmp != null)
             {
                 saveMin = GetMinContent();
                 head.Next = saveMin;
@@ -411,7 +399,7 @@ namespace Nodes
             head = saveMax;
             treat = head;
             tmp = _root;
-            while (tmp.Next != null)
+            while (tmp != null)
             {
                 saveMax = GetMaxContent();
                 head.Next = saveMax;

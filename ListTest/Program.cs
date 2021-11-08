@@ -10,7 +10,7 @@ namespace ListTest
         {
 
             Node a = new Node(12);
-
+            
             LinkedList lisst = new LinkedList(1);
             lisst.WriteContent();
             lisst.AddFront(2);
@@ -18,7 +18,7 @@ namespace ListTest
             lisst.AddFront(4);
             lisst.AddFront(5);
             lisst.AddFront(11);
-            
+            lisst.AddFront(4);
             lisst.AddBack(-1);
             lisst.WriteContent();
             lisst.AddByIndex(1, 999);
@@ -29,8 +29,12 @@ namespace ListTest
             lisst.WriteContent();
             lisst.SortFromMinToMax();
             lisst.WriteContent();
-            lisst.SortFromMaxToMin();
             Console.WriteLine("OK");
+            lisst.SortFromMaxToMin();
+            lisst.ReverseList();
+            lisst.WriteContent();
+
+
             lisst.WriteContent();
 
             //Console.WriteLine(lisst.GetIndexByContent(5));

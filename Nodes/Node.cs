@@ -6,7 +6,6 @@ namespace Nodes
     {
         public int Value { get; set; }
         public int Index { get; set; }
-
         public int MaxIndex { get; set; }
         public Node Next { get; set; }
 

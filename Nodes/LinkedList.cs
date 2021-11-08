@@ -227,6 +227,9 @@ namespace Nodes
             Node tmp2;
             Node tmp3;
 
+
+            //if на один и на  2 элема
+
             tmp1 = _root;
             tmp2 = _root.Next;
             tmp3 = _root.Next.Next;

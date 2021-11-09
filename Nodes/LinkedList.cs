@@ -262,7 +262,17 @@ namespace Nodes
 
 
             //if на один и на  2 элема
-
+            if (_root.Next == null)
+            {
+                return;
+            }
+            if (_root.Next.Next == null)
+            {
+                tmp1 = _root.Next;
+                _root.Next = null;
+                tmp1.Next = _root;
+                _root = tmp1;
+            }
             tmp1 = _root;
             tmp2 = _root.Next;
             tmp3 = _root.Next.Next;
@@ -477,7 +487,8 @@ namespace Nodes
         public int DeleteAllNodesWithSameContent(int content)
         {
             int cnt = 0;
-
+            Node tmp;
+            Node prevNode;
             if (_root.Next == null)
             {
                 if (_root.Value == content)
@@ -487,18 +498,90 @@ namespace Nodes
                 }
                 return cnt;
             }
-
-            while (true)
+            while (_root.Next != null)
             {
-                return 1;
+                if (_root.Value != content)
+                    break;
+                _root = _root.Next;
             }
-
+            prevNode = _root;
+            tmp = _root.Next;
+            while (tmp != null)
+            {
+               if (tmp.Value == content)
+               {
+                    tmp = tmp.Next;
+                    prevNode.Next = tmp;
+                    cnt++;
+               }
+               else
+               {
+                    tmp = tmp.Next;
+                    prevNode = prevNode.Next;
+               }
+            }
             return cnt;
         }
         #endregion
 
+        #region methods to Work with another LinkedLists
 
-        public override bool Equals(object obj)//obj = actual
+        public void AddAnotherListToFront(LinkedList newList)
+        {
+            Node thisListEnd;
+
+            thisListEnd = _root;
+            while (thisListEnd.Next != null)
+            {
+                thisListEnd = thisListEnd.Next;
+            }
+            thisListEnd.Next = newList._root;
+        }
+
+        public void AddAnotherListAtBack(LinkedList newList)
+        {
+            Node newRoot;
+
+            newRoot = newList._root;
+            while (newList._root.Next != null)
+            {
+                newList._root = newList._root.Next;
+            }
+            newList._root.Next = _root;
+            _root = newRoot;
+        }
+
+        public void AddAnotherListByIndex(LinkedList newList, int index)
+        {
+            Node oldRootStart;
+            Node oldRootEnd;
+
+            Node newListEnd;
+            Node newListStart;
+
+            int cnt;
+
+            cnt = 0;
+            newListStart = newList._root;
+            while (newList._root.Next != null)
+            {
+                newList._root = newList._root.Next;
+            }
+            newListEnd = newList._root;
+            oldRootStart = _root;
+            while (oldRootStart.Next != null && cnt < index)
+            {
+                oldRootStart = oldRootStart.Next;
+                cnt++;
+            }
+            oldRootEnd = oldRootStart.Next;
+            oldRootStart.Next = newListStart;
+            newListEnd.Next = oldRootEnd;
+        }
+
+        #endregion
+
+        public override bool Equals(object obj)
         {
 
             LinkedList myNode = (LinkedList)obj;

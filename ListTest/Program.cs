@@ -21,14 +21,11 @@ namespace ListTest
             lisst.AddFront(5);
             lisst.AddFront(11);
             lisst.AddFront(4);
-            lisst.AddBack(-1);
+            lisst.AddBack(4);
+            lisst.AddFront(1);
             lisst.WriteContent();
-            int[] ass = new int[] { 1, 2, 3, 5, 22 };
-            LinkedList gl = new LinkedList(ass);
-            LinkedList ww = new LinkedList(ass);
-            gl.AddByIndex(2, 0);
-            gl.WriteContent();
-            Console.WriteLine("hello");
+            lisst.DeleteAllNodesWithSameContent(4);
+            lisst.WriteContent();
             //Console.WriteLine(lisst.GetIndexByContent(5));
         }
     }

@@ -10,6 +10,7 @@ namespace Nodes
     {
         private Node _root;
 
+        #region Constructors
         public LinkedList()
         {
             _root = null;
@@ -36,6 +37,7 @@ namespace Nodes
                 newN = newN.Next;
             }
         }
+        #endregion
 
         #region methods to ADD content
         public void AddFront(int value)
@@ -204,6 +206,72 @@ namespace Nodes
             tmp2.Next = tmp;
             SetSomeData();
         }
+
+        public void DeleteOneNodeByContent(int value)
+        {
+            if (_root.Next == null)
+            {
+                if (_root.Value == value)
+                {
+                    _root = null;
+                }
+                return;
+            }
+
+
+            Node prev = _root;
+            Node cur = _root.Next;
+            while (cur != null)
+            {
+                if (cur.Value == value)
+                {
+                    prev.Next = cur.Next;
+                    break;
+                }
+                prev = cur;
+                cur = cur.Next;
+            }
+        }
+
+        public int DeleteAllNodesWithSameContent(int content)
+        {
+            int cnt = 0;
+            Node tmp;
+            Node prevNode;
+            if (_root.Next == null)
+            {
+                if (_root.Value == content)
+                {
+                    _root = null;
+                    cnt++;
+                }
+                return cnt;
+            }
+            while (_root.Next != null)
+            {
+                if (_root.Value != content)
+                    break;
+                _root = _root.Next;
+            }
+            prevNode = _root;
+            tmp = _root.Next;
+            while (tmp != null)
+            {
+               if (tmp.Value == content)
+               {
+                    tmp = tmp.Next;
+                    prevNode.Next = tmp;
+                    cnt++;
+               }
+               else
+               {
+                    tmp = tmp.Next;
+                    prevNode = prevNode.Next;
+               }
+            }
+            return cnt;
+        }
+
         #endregion
 
         #region get some data
@@ -374,40 +442,6 @@ namespace Nodes
         #endregion
 
 
-        #region some utils
-        public void WriteContent()
-        {
-            Node tmp;
-
-            tmp = _root;
-            while (tmp != null)
-            {
-                Console.Write(tmp.Value + " ");
-                tmp = tmp.Next;
-            }
-            Console.WriteLine();
-        }
-        private void SetSomeData()
-        {
-            Node tmp;
-            int index;
-
-            index = 0;
-            tmp = _root;
-            while (tmp != null)
-            {
-                tmp.Index = index;
-                tmp = tmp.Next;
-                index++;
-            }
-            tmp = _root;
-            while (tmp != null)
-            {
-                tmp.MaxIndex = index;
-                tmp = tmp.Next;
-            }
-        }
-        #endregion
 
         #region methods to sort list
 
@@ -457,72 +491,6 @@ namespace Nodes
         }
         #endregion
 
-        #region Some search methods
-        public void DeleteOneNodeByContent(int value)
-        {
-            if (_root.Next == null)
-            {
-                if (_root.Value == value)
-                {
-                    _root = null;
-                }
-                return;
-            }
-
-
-            Node prev = _root;
-            Node cur = _root.Next;
-            while (cur != null)
-            {
-                if (cur.Value == value)
-                {
-                    prev.Next = cur.Next;
-                    break;
-                }
-                prev = cur;
-                cur = cur.Next;
-            }
-        }
-
-        public int DeleteAllNodesWithSameContent(int content)
-        {
-            int cnt = 0;
-            Node tmp;
-            Node prevNode;
-            if (_root.Next == null)
-            {
-                if (_root.Value == content)
-                {
-                    _root = null;
-                    cnt++;
-                }
-                return cnt;
-            }
-            while (_root.Next != null)
-            {
-                if (_root.Value != content)
-                    break;
-                _root = _root.Next;
-            }
-            prevNode = _root;
-            tmp = _root.Next;
-            while (tmp != null)
-            {
-               if (tmp.Value == content)
-               {
-                    tmp = tmp.Next;
-                    prevNode.Next = tmp;
-                    cnt++;
-               }
-               else
-               {
-                    tmp = tmp.Next;
-                    prevNode = prevNode.Next;
-               }
-            }
-            return cnt;
-        }
-        #endregion
 
         #region methods to Work with another LinkedLists
 
@@ -581,6 +549,40 @@ namespace Nodes
 
         #endregion
 
+        #region some utils
+        public void WriteContent()
+        {
+            Node tmp;
+
+            tmp = _root;
+            while (tmp != null)
+            {
+                Console.Write(tmp.Value + " ");
+                tmp = tmp.Next;
+            }
+            Console.WriteLine();
+        }
+        private void SetSomeData()
+        {
+            Node tmp;
+            int index;
+
+            index = 0;
+            tmp = _root;
+            while (tmp != null)
+            {
+                tmp.Index = index;
+                tmp = tmp.Next;
+                index++;
+            }
+            tmp = _root;
+            while (tmp != null)
+            {
+                tmp.MaxIndex = index;
+                tmp = tmp.Next;
+            }
+        }
+        #endregion
         public override bool Equals(object obj)
         {
 

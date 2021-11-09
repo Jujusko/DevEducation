@@ -20,6 +20,23 @@ namespace Nodes
             _root.Index = 0;
         }
 
+        public LinkedList(int [] array)
+        {
+            if (array.Length == 0)
+            {
+                _root = null;
+                return;
+            }
+            Node newN = new Node(array[0]);
+            int cnt = 0;
+            _root = newN;
+            while (++cnt < array.Length)
+            {
+                newN.Next = new Node(array[cnt]);
+                newN = newN.Next;
+            }
+        }
+
         #region methods to ADD content
         public void AddFront(int value)
         {
@@ -54,18 +71,34 @@ namespace Nodes
 
         public void AddByIndex(int index, int value)
         {
+            Node insertNode;
             Node tmp;
-            Node tmp2;
+            int rootsIndex;
+
+            rootsIndex = 1;
             tmp = _root;
-            while (tmp.Next.Index != index)
+            insertNode = new Node(value);
+            if (index == 0)
+            {
+                insertNode.Next = _root;
+                _root = insertNode;
+                return;
+            }
+            while(tmp.Next != null && rootsIndex != index)
             {
                 tmp = tmp.Next;
+                rootsIndex++;
             }
-            tmp2 = tmp.Next;
-            tmp.Next = new Node(value);
-            tmp.Next.Next = tmp2;
-            SetSomeData();
+            if (index == rootsIndex)
+            {
+                insertNode.Next = tmp.Next;
+                tmp.Next = insertNode;
+            }
+            else
+                throw new ArgumentException("index is too big");
+
         }
+
         #endregion
 
         #region delete content
@@ -414,21 +447,77 @@ namespace Nodes
         }
         #endregion
 
+        #region Some search methods
+        public void DeleteOneNodeByContent(int value)
+        {
+            if (_root.Next == null)
+            {
+                if (_root.Value == value)
+                {
+                    _root = null;
+                }
+                return;
+            }
+
+
+            Node prev = _root;
+            Node cur = _root.Next;
+            while (cur != null)
+            {
+                if (cur.Value == value)
+                {
+                    prev.Next = cur.Next;
+                    break;
+                }
+                prev = cur;
+                cur = cur.Next;
+            }
+        }
+
+        public int DeleteAllNodesWithSameContent(int content)
+        {
+            int cnt = 0;
+
+            if (_root.Next == null)
+            {
+                if (_root.Value == content)
+                {
+                    _root = null;
+                    cnt++;
+                }
+                return cnt;
+            }
+
+            while (true)
+            {
+                return 1;
+            }
+
+            return cnt;
+        }
+        #endregion
+
+
         public override bool Equals(object obj)//obj = actual
         {
 
-            Node myNode = (Node)obj;
+            LinkedList myNode = (LinkedList)obj;
 
-            while (myNode != null)
+            while (myNode._root.Next != null)
             {
-                if (myNode.Value != _root.Value)
+                if (_root.Next == null && myNode._root.Next != null)
+                {
                     return false;
-                if (_root == null && myNode != null)
+                }
+                if (_root.Next != null && myNode._root.Next == null)
+                {
                     return false;
-                if (_root != null && myNode == null)
+                }
+                if (myNode._root.Value != _root.Value)
+                {
                     return false;
-
-                myNode = myNode.Next;
+                }
+                myNode._root = myNode._root.Next;
                 _root = _root.Next;
             }
             return true;

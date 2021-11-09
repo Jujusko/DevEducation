@@ -15,6 +15,7 @@ namespace Nodes
             Value = value;
             Next = null;
         }
+
         /*
         public override bool Equals(object obj)
         {

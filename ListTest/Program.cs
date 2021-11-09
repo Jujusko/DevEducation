@@ -1,5 +1,6 @@
 ﻿using System;
 using List;
+using System.Linq;
 using Nodes;
 
 namespace ListTest
@@ -11,6 +12,8 @@ namespace ListTest
 
             Node a = new Node(12);
             LinkedList lisst = new LinkedList(1);
+            lisst.DeleteOneNodeByContent(1);
+            lisst.WriteContent();
             lisst.WriteContent();
             lisst.AddFront(2);
             lisst.AddFront(3);
@@ -20,23 +23,12 @@ namespace ListTest
             lisst.AddFront(4);
             lisst.AddBack(-1);
             lisst.WriteContent();
-            lisst.AddByIndex(1, 999);
-            lisst.WriteContent();
-            lisst.DeleteSomeElementsFromNeededIndex(2,2);
-            lisst.WriteContent();
-            lisst.ReverseList();
-            lisst.WriteContent();
-            lisst.SortFromMinToMax();
-            lisst.WriteContent();
-            Console.WriteLine("OK");
-            lisst.SortFromMaxToMin();
-            lisst.ReverseList();
-            lisst.WriteContent();
-
-            LinkedList aaa = new LinkedList();
-            Console.WriteLine(aaa);
-            lisst.WriteContent();
-            Console.WriteLine(lisst);
+            int[] ass = new int[] { 1, 2, 3, 5, 22 };
+            LinkedList gl = new LinkedList(ass);
+            LinkedList ww = new LinkedList(ass);
+            gl.AddByIndex(2, 0);
+            gl.WriteContent();
+            Console.WriteLine("hello");
             //Console.WriteLine(lisst.GetIndexByContent(5));
         }
     }

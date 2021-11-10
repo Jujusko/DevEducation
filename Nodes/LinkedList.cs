@@ -605,23 +605,28 @@ namespace Nodes
         {
 
             LinkedList myNode = (LinkedList)obj;
+            Node tmp1;
+            Node tmp2;
 
-            while (myNode._root.Next != null)
+            tmp1 = _root;
+            tmp2 = myNode._root;
+            if (tmp1 == null && tmp2 == null)
             {
-                if (_root.Next == null && myNode._root.Next != null)
+                return true;
+            }
+            while (tmp2 != null && tmp1 != null)
+            {
+                if ((tmp1.Next == null && tmp2.Next != null) 
+                || (tmp1.Next != null && tmp2.Next == null))
                 {
                     return false;
                 }
-                if (_root.Next != null && myNode._root.Next == null)
+                if (tmp2.Value != tmp1.Value)
                 {
                     return false;
                 }
-                if (myNode._root.Value != _root.Value)
-                {
-                    return false;
-                }
-                myNode._root = myNode._root.Next;
-                _root = _root.Next;
+                tmp2 = tmp2.Next;
+                tmp1 = tmp1.Next;
             }
             return true;
         }

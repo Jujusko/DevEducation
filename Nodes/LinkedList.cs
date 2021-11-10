@@ -169,6 +169,10 @@ namespace Nodes
                 maxIndex++;
             }
             neededIndex = maxIndex - amount;
+            if (neededIndex < 1)
+            {
+                throw new ArgumentException("Too much nodes to delete");
+            }
             tmp = _root;
             while (tmp.Index != neededIndex)
             {
@@ -180,6 +184,11 @@ namespace Nodes
 
         public void DeleteSomeElementsFromHead(int amount)
         {
+            SetSomeData();
+            if (amount > _root.MaxIndex)
+            {
+                throw new ArgumentException("Too much nodes to delete");
+            }
             while (amount != 0)
             {
                 _root = _root.Next;
@@ -193,6 +202,15 @@ namespace Nodes
             Node tmp;
             Node tmp2;
 
+            SetSomeData();
+            if (amount + index > _root.MaxIndex)
+            {
+                throw new ArgumentException("Too much nodes to delete");
+            }
+            if (index < 0 || amount < 0)
+            {
+                throw new ArgumentException("Bad args");
+            }
             tmp = _root;
             while (tmp.Next.Index != index)
             {

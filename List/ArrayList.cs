@@ -30,15 +30,18 @@ namespace List
             Lenght = 0;
             _array = new int[_minArrayLenght];
         }
-        public ArrayList(int lenght)
+        public ArrayList(int firstValue)
         {
-            Lenght = lenght;
+            Lenght = 1;
             if (Lenght > _minArrayLenght)
             {
                 _array = new int[Lenght + 1];
             }
             else
+            {
                 _array = new int[_minArrayLenght];
+                _array[0] = firstValue;
+            }
         }
         public ArrayList(int [] array)
         {
@@ -123,6 +126,8 @@ namespace List
         }
         public void DeleteAtEnd()
         {
+            if (Lenght == 0)
+                return;
             _array[Lenght - 1] = 0;
             Lenght--;
         }
@@ -133,6 +138,8 @@ namespace List
 
             if (Lenght == _array.Length)
                 UpArraySize();
+            if (Lenght == 0)
+                return ;
             cnt = 0;
             while(cnt < Lenght)
             {
@@ -151,6 +158,10 @@ namespace List
 
             if (Lenght + 1 >= _array.Length)
                 UpArraySize();
+            if (index > Lenght)
+            {
+                throw new ArgumentException("Too big index");
+            }
             cnt = index;
             while (cnt < Lenght)
             {

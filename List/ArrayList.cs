@@ -215,14 +215,10 @@ namespace List
             }
             Lenght -= amountIndexes;
         }
-        public int GetLenght()
-        {
-            return Lenght;
-        }
 
         public int GetContentByIndex(int index)
         {
-            if (index > Lenght)
+            if (index > Lenght || index < 0)
                 throw new ArgumentException("Too much index, take some less than " + Lenght);
             return _array[index];
         }
@@ -240,6 +236,10 @@ namespace List
         }
         public void ChangeContentByIndex(int content, int index)
         {
+            if (index < 0 || index > Lenght)
+            {
+                throw new ArgumentException("Wrong Index");
+            }
             _array[index] = content;
         }
         
@@ -355,7 +355,6 @@ namespace List
 
         public void AddOwnListAtFront(ArrayList array)
         {
-            //Нужен массив в аргументы или другой объект этого класса?
             int cnt;
             int lenAr;
 

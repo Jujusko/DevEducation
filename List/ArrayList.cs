@@ -158,9 +158,9 @@ namespace List
 
             if (Lenght + 1 >= _array.Length)
                 UpArraySize();
-            if (index > Lenght)
+            if (index > Lenght || index < 0)
             {
-                throw new ArgumentException("Too big index");
+                throw new ArgumentException("You took bad index");
             }
             cnt = index;
             while (cnt < Lenght)
@@ -338,22 +338,24 @@ namespace List
         {
             int cnt;
             int amount;
+            int Len;
 
-            cnt = 0;
+            cnt = Lenght;
+            cnt--;
             amount = 0;
-            while (cnt < Lenght)
+            while (cnt >= 0)
             {
                 if (content == _array[cnt])
                 {
                     DeleteByIndex(cnt);
                     amount++;
                 }
-                cnt++;
+                cnt--;
             }
             return amount;
         }
 
-        public void AddOwnListAtFront(ArrayList array)
+        public void AddFront(ArrayList array)
         {
             int cnt;
             int lenAr;
@@ -370,7 +372,7 @@ namespace List
         {
             return Lenght;
         }
-        public void AddOwnListAtBack(ArrayList array)
+        public void AddBack(ArrayList array)
         {
             int cnt;
             int lenAr;
@@ -384,7 +386,7 @@ namespace List
                 cnt--;
             }
         }
-        public void AddOwnListAtByIndex(ArrayList array, int index)
+        public void AddByIndex(ArrayList array, int index)
         {
             int cnt;
             int lenAr;

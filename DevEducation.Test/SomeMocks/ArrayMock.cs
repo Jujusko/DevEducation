@@ -16,6 +16,7 @@ namespace DevEducation.Test.SomeMocks
         Usual2,
         NonSquare,//for double array
         OneInAll,
+        SameValue,
         OneElem
     }
     public class ArrayMock
@@ -36,6 +37,8 @@ namespace DevEducation.Test.SomeMocks
                 array = new int[] {};
             else if (flag == Flags.OneElem)
                 array = new int[] { 10 };
+            else if (flag == Flags.SameValue)
+                array = new int[] { 1, 1, 1, 1, 1, 1, 1 };
             return array;
             
         }

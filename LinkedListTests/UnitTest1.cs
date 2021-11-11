@@ -45,5 +45,43 @@ namespace LinkedListTests
             actual.AddByIndex(index, value);
             Assert.AreEqual(expected, actual);
         }
+        [TestCase(2, new int[] { 1, 2, 0, 3, 5, 22 })]
+        [TestCase(0, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(0, new int[] {1 })]
+        [TestCase(0, new int[] { 1,2,3,4,5,6,7,8})]
+        [TestCase(8, new int[] { 8, 7, 6, 5, 4, 3, 2, 1, 0 })]
+        public static void GetMinContentIndexTest(int actual, int[] array)
+        {
+            int expected;
+            LinkedList test = new LinkedList(array);
+            expected = test.GetMinContentIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(5, new int[] { 1, 2, 0, 3, 5, 22 })]
+        [TestCase(0, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(0, new int[] { 1 })]
+        [TestCase(7, new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })]
+        [TestCase(0, new int[] { 8, 7, 6, 5, 4, 3, 2, 1, 0 })]
+        public static void GetMaxContentIndexTest(int actual, int[] array)
+        {
+            int expected;
+            LinkedList test = new LinkedList(array);
+            expected = test.GetMaxContentIndex();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, new int[] { 1, 2, 0, 3, 5, 22 })]
+        [TestCase(1, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(1, new int[] { 1 })]
+        [TestCase(1, new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })]
+        [TestCase(0, new int[] { 8, 7, 6, 5, 4, 3, 2, 1, 0 })]
+        public static void GetMinContentTest(int actual, int[] array)
+        {
+            int expected;
+            LinkedList test = new LinkedList(array);
+            expected = test.GetMinContent();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

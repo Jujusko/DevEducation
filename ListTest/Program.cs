@@ -10,22 +10,30 @@ namespace ListTest
         static void Main(string[] args)
         {
 
-            Node a = new Node(12);
-            LinkedList lisst = new LinkedList(1);
-            lisst.DeleteOneNodeByContent(1);
-            lisst.WriteContent();
-            lisst.WriteContent();
-            lisst.AddFront(2);
-            lisst.AddFront(3);
-            lisst.AddFront(4);
-            lisst.AddFront(5);
-            lisst.AddFront(11);
-            lisst.AddFront(4);
-            lisst.AddBack(4);
-            lisst.AddFront(1);
-            lisst.WriteContent();
-            lisst.DeleteAllNodesWithSameContent(4);
-            lisst.WriteContent();
+            //Node a = new Node(12);
+            //LinkedList lisst = new LinkedList(1);
+            //lisst.DeleteOneNodeByContent(1);
+            //lisst.WriteContent();
+            //lisst.WriteContent();
+            //lisst.AddFront(2);
+            //lisst.AddFront(3);
+            //lisst.AddFront(4);
+            //lisst.AddFront(5);
+            //lisst.AddFront(11);
+            //lisst.AddFront(4);
+            //lisst.AddBack(4);
+            //lisst.AddFront(1);
+            //lisst.WriteContent();
+            //lisst.DeleteAllNodesWithSameContent(4);
+            //lisst.WriteContent();
+            //LinkedList wer = new LinkedList(new int[10] { 1, 2, 3, 5, 22, -23, 45, 333, -12345, 0 });
+            //wer.WriteContent();
+            //int s = wer.GetMinContentIndex();
+            //Console.WriteLine(s);
+            LinkedList ss = new LinkedList(new int[] { 2, 1 });
+            Console.WriteLine(ss);
+            ss.DeleteSomeElementsFromNeededIndex(1, 1);
+            Console.WriteLine(ss);
             //Console.WriteLine(lisst.GetIndexByContent(5));
         }
     }

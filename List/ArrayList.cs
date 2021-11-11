@@ -365,6 +365,11 @@ namespace List
                 AddFront(array[cnt]);
             }
         }
+
+        public int GetLenght()
+        {
+            return Lenght;
+        }
         public void AddOwnListAtBack(ArrayList array)
         {
             int cnt;

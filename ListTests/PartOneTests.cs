@@ -82,7 +82,7 @@ namespace ListTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 0, 3, 5, 22 })]
+        [TestCase(2, new int[] { 1, 2, 5, 22 }, new int[] { 1, 2, 3, 5, 22 })]
         [TestCase(1, new int[] { 1 }, new int[] { 1, 1 })]
         [TestCase(0, new int[] { }, new int[] { 1 })]
         [TestCase(3, new int[] { 1, 1, 1, 1, 1, 1, 1 }, new int[] { 1, 1, 1, 1, 1, 1, 1, 1 })]

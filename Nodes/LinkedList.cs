@@ -18,7 +18,6 @@ namespace Nodes
         public LinkedList(int value)
         {
             _root = new Node(value);
-            _root.Index = 0;
         }
 
         public LinkedList(int [] array)
@@ -56,7 +55,6 @@ namespace Nodes
             {
                 _root = new Node(value);
             }
-            SetSomeData();
         }
         public void AddBack(int value)
         {
@@ -68,7 +66,7 @@ namespace Nodes
                 tmp.Next = _root;
                 _root = tmp;
             }
-            SetSomeData();
+
         }
 
         public void AddByIndex(int index, int value)
@@ -98,7 +96,6 @@ namespace Nodes
             }
             else
                 throw new ArgumentException("index is too big");
-
         }
 
         #endregion
@@ -108,6 +105,15 @@ namespace Nodes
         public void DeleteFromEnd()
         {
             Node tmp;
+            if (_root == null)
+            {
+                return;
+            }
+            if (_root.Next == null)
+            {
+                _root = null;
+                return;
+            }
 
             tmp = _root;
             while (tmp.Next.Next != null)
@@ -115,116 +121,182 @@ namespace Nodes
                 tmp = tmp.Next;
             }
             tmp.Next = null;
-            SetSomeData();
+            
         }
 
         public void DeleteAtHead()
         {
             Node tmp;
 
+            if (_root == null)
+            {
+                return;
+            }
             tmp = _root;
             tmp = tmp.Next;
             _root = tmp;
-            SetSomeData();
         }
 
         public void DeleteByIndex(int index)
         {
             Node tmp;
             Node tmp2;
+            int cnt;
 
-            tmp = _root;
-            if (_root.Index == index)
+            if (_root == null || (_root.Next == null && index != 0))
+            {
+                return;
+            }
+            else if (_root.Next == null && index == 0)
             {
                 _root = _root.Next;
                 return;
             }
-            if (index != _root.MaxIndex)
+            if (index == 0)
             {
-                while (tmp.Next.Index != index)
+                _root = _root.Next;
+                return;
+            }
+            tmp = _root;
+            tmp2 = _root.Next;
+            cnt = 0;
+            while (tmp.Next != null)
+            {
+
+                cnt++;
+                if (cnt == index)
+                {
+                    tmp.Next = tmp.Next.Next;
+                    break;
+                }
+                else
                 {
                     tmp = tmp.Next;
                 }
-                tmp2 = tmp.Next.Next;
-                tmp.Next = tmp2;
             }
-            else if (index == _root.MaxIndex)
-            {
-                DeleteFromEnd();
-            }
-            SetSomeData();
         }
 
         public void DeleteSomeElementsFromEnd(int amount)
         {
-            int maxIndex;
+            int amoutnOfElems;
             int neededIndex;
+            int cnt;
             Node tmp;
 
-            maxIndex = 0;
+            cnt = 0;
+            amoutnOfElems = 0;
             tmp = _root;
-            while (tmp.Next !=null)
+            //while (firstToConnect != null)
+            //{
+            //    amountOfElems++;
+            //    firstToConnect = firstToConnect.Next;
+            //}
+            amoutnOfElems = GetLenght();
+            if (amount < 0 || amount > amoutnOfElems)
             {
-                tmp = tmp.Next;
-                maxIndex++;
-            }
-            neededIndex = maxIndex - amount;
-            if (neededIndex < 1)
-            {
-                throw new ArgumentException("Too much nodes to delete");
+                throw new IndexOutOfRangeException("You took bad arg");
             }
             tmp = _root;
-            while (tmp.Index != neededIndex)
+            neededIndex = amoutnOfElems - amount;
+            while (tmp != null)
             {
+                cnt++;
+                if (cnt == neededIndex)
+                {
+                    tmp.Next = null;
+                    break;
+                }
                 tmp = tmp.Next;
             }
-            tmp.Next = null;
-            SetSomeData();
         }
 
         public void DeleteSomeElementsFromHead(int amount)
         {
-            SetSomeData();
-            if (amount > _root.MaxIndex)
+            int amountOfElems;
+            int skipElems;
+            Node tmp;
+
+            amountOfElems = 0;
+            tmp = _root;
+            if (_root == null && amount == 0)
             {
-                throw new ArgumentException("Too much nodes to delete");
+                return;
             }
-            while (amount != 0)
+            //while (firstToConnect != null)
+            //{
+            //    amountOfElems++;
+            //    firstToConnect = firstToConnect.Next;
+            //}
+            amountOfElems = GetLenght();
+            if (amount < 0 || amount > amountOfElems)
             {
+                throw new IndexOutOfRangeException("You took bad arg");
+            }
+            skipElems = 0;
+            while (_root != null)
+            {
+                if (skipElems == amount)
+                {
+                    break;
+                }
+                skipElems++;
                 _root = _root.Next;
-                amount--;
             }
-            SetSomeData();
         }
 
         public void DeleteSomeElementsFromNeededIndex(int index, int amount)
         {
-            Node tmp;
-            Node tmp2;
+            Node firstToConnect;
+            Node secondToConnect;
+            int amountOfElems;
 
-            SetSomeData();
-            if (amount + index > _root.MaxIndex)
+            firstToConnect = _root;
+            amountOfElems = 0;
+            if (index == 0)
             {
-                throw new ArgumentException("Too much nodes to delete");
+                DeleteSomeElementsFromHead(amount);
             }
-            if (index < 0 || amount < 0)
+            else
             {
-                throw new ArgumentException("Bad args");
+                //while (firstToConnect != null)
+                //{
+                //    amountOfElems++;
+                //    firstToConnect = firstToConnect.Next;
+                //}
+                amountOfElems = GetLenght();
+                if (index < 0 || amount < 0 || ((index + amount) > amountOfElems)
+                    || index > amountOfElems || amount > amountOfElems)
+                {
+                    throw new IndexOutOfRangeException("You took bad args");
+                }
+                firstToConnect = _root;
+                while (--index > 0)
+                {
+                    firstToConnect = firstToConnect.Next;
+                }
+                secondToConnect = firstToConnect.Next;
+                while (amount-- > 0 && secondToConnect != null)
+                {
+                    secondToConnect = secondToConnect.Next;
+                }
+                firstToConnect.Next = secondToConnect;
             }
-            tmp = _root;
-            while (tmp.Next.Index != index)
-            {
-                tmp = tmp.Next;
-            }
-            tmp2 = tmp;
-            while (tmp.Index != amount + index)
-            {
-                tmp = tmp.Next;
-            }
-            tmp2.Next = tmp;
-            SetSomeData();
         }
 
+        public int GetLenght()
+        {
+            Node tmp;
+            int lenght;
+            lenght = 0;
+
+            tmp = _root;
+            while (tmp != null)
+            {
+                tmp = tmp.Next;
+                lenght++;
+            }
+            return lenght;
+        }
         public void DeleteOneNodeByContent(int value)
         {
             if (_root.Next == null)
@@ -334,7 +406,6 @@ namespace Nodes
             if (tmp == null)
             {
                 throw new ArgumentException("You took bad index");
-                return;
             }
             tmp.Value = value;
         }
@@ -393,69 +464,103 @@ namespace Nodes
             
         }
 
-        public Node GetMaxContent()
+        public int GetMaxContent()
         {
             Node neededNode;
             Node tmp;
-            SetSomeData();
+            
             tmp = _root;
             neededNode = tmp;
+            if (_root == null)
+            {
+                throw new Exception("You have empty linked list");
+            }
+            if (_root.Next == null)
+            {
+                return _root.Value;
+            }
             while (tmp != null)
             {
                 if (neededNode.Value < tmp.Value)
                     neededNode = tmp;
                 tmp = tmp.Next;
             }
-            return neededNode;
+            return neededNode.Value;
         }
-        public Node GetMinContent()
+        public int GetMinContent()
         {
             Node neededNode;
             Node tmp;
 
+            if (_root == null)
+            {
+                throw new Exception("You have empty linked list");
+            }
             tmp = _root;
             neededNode = tmp;
             while (tmp.Next != null)
             {
-                if (tmp.Value > tmp.Next.Value)
+                if (neededNode.Value > tmp.Next.Value)
                     neededNode = tmp.Next;
                 tmp = tmp.Next;
             }
-            return neededNode;
+            return neededNode.Value;
         }
 
         public int GetMaxContentIndex()
         {
             Node neededNode;
             Node tmp;
-            SetSomeData();
+            int index;
+            int neededIndex;
 
-            tmp = _root;
-            neededNode = null;
-            while (tmp.Next != null)
+            index = 0;
+            neededIndex = 0;
+            if (_root == null)
             {
-                if (tmp.Value < tmp.Next.Value)
+                throw new Exception("List is empty");
+            }
+            tmp = _root;
+            neededNode = _root;
+            while (tmp != null)
+            {
+                if (tmp.Value > neededNode.Value)
+                {
+                    neededIndex = index;
                     neededNode = tmp;
+                }
+                index++;
                 tmp = tmp.Next;
             }
-            return neededNode.Index;
+            return neededIndex;
         }
 
         public int GetMinContentIndex()
         {
             Node neededNode;
             Node tmp;
-            SetSomeData();
+            int index;
+            int neededIndex;
 
-            tmp = _root;
-            neededNode = null;
-            while (tmp.Next != null)
+            index = 0;
+            neededIndex = 0;
+            if (_root == null)
             {
-                if (tmp.Value > tmp.Next.Value)
+                throw new Exception("List is empty");
+            }
+            tmp = _root;
+            neededNode = _root;
+            while (tmp != null)
+            {
+                if (tmp.Value < neededNode.Value)
+                {
+                    neededIndex = index;
                     neededNode = tmp;
+                }
+                index++;
                 tmp = tmp.Next;
             }
-            return neededNode.Index;
+            return neededIndex;
         }
         #endregion
 
@@ -463,50 +568,50 @@ namespace Nodes
 
         #region methods to sort list
 
-        public void SortFromMinToMax ()
-        {
-            Node head;
-            Node saveMin;
-            Node tmp;
-            Node treat;
+        //public void SortFromMinToMax ()
+        //{
+        //    Node head;
+        //    Node saveMin;
+        //    Node tmp;
+        //    Node treat;
 
-            saveMin = GetMinContent();
-            DeleteByIndex(saveMin.Index);
-            head = saveMin;
-            treat = head;
-            tmp = _root;
-            while (tmp != null)
-            {
-                saveMin = GetMinContent();
-                head.Next = saveMin;
-                head = head.Next;
-                DeleteByIndex(saveMin.Index);
-                tmp = _root;
-            }
-            _root = treat;
-        }
-        public void SortFromMaxToMin()
-        {
-            Node head;
-            Node saveMax;
-            Node tmp;
-            Node treat;
+        //    saveMin = GetMinContent();
+        //    DeleteByIndex(saveMin.Index);
+        //    head = saveMin;
+        //    treat = head;
+        //    tmp = _root;
+        //    while (tmp != null)
+        //    {
+        //        saveMin = GetMinContent();
+        //        head.Next = saveMin;
+        //        head = head.Next;
+        //        DeleteByIndex(saveMin.Index);
+        //        tmp = _root;
+        //    }
+        //    _root = treat;
+        //}
+        //public void SortFromMaxToMin()
+        //{
+        //    Node head;
+        //    Node saveMax;
+        //    Node tmp;
+        //    Node treat;
 
-            saveMax = GetMaxContent();
-            DeleteByIndex(saveMax.Index);
-            head = saveMax;
-            treat = head;
-            tmp = _root;
-            while (tmp != null)
-            {
-                saveMax = GetMaxContent();
-                head.Next = saveMax;
-                head = head.Next;
-                DeleteByIndex(saveMax.Index);
-                tmp = _root;
-            }
-            _root = treat;
-        }
+        //    saveMax = GetMaxContent();
+        //    DeleteByIndex(saveMax.Index);
+        //    head = saveMax;
+        //    treat = head;
+        //    tmp = _root;
+        //    while (tmp != null)
+        //    {
+        //        saveMax = GetMaxContent();
+        //        head.Next = saveMax;
+        //        head = head.Next;
+        //        DeleteByIndex(saveMax.Index);
+        //        tmp = _root;
+        //    }
+        //    _root = treat;
+        //}
         #endregion
 
 
@@ -580,26 +685,6 @@ namespace Nodes
             }
             Console.WriteLine();
         }
-        private void SetSomeData()
-        {
-            Node tmp;
-            int index;
-
-            index = 0;
-            tmp = _root;
-            while (tmp != null)
-            {
-                tmp.Index = index;
-                tmp = tmp.Next;
-                index++;
-            }
-            tmp = _root;
-            while (tmp != null)
-            {
-                tmp.MaxIndex = index;
-                tmp = tmp.Next;
-            }
-        }
         #endregion
         public override bool Equals(object obj)
         {
@@ -644,6 +729,9 @@ namespace Nodes
             }
             return s;
         }
-        
+
+       
+
+
     }
 }

@@ -15,7 +15,8 @@ namespace DevEducation.Test.SomeMocks
         EmptyArray,
         Usual2,
         NonSquare,//for double array
-        OneInAll
+        OneInAll,
+        OneElem
     }
     public class ArrayMock
     {
@@ -33,6 +34,8 @@ namespace DevEducation.Test.SomeMocks
                 array = new int[10] { 83, 75, 74, 86, 23, 67, 85, 64, 45, 40 };
             else if (flag == Flags.EmptyArray)
                 array = new int[] {};
+            else if (flag == Flags.OneElem)
+                array = new int[] { 10 };
             return array;
             
         }

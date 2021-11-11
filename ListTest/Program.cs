@@ -30,9 +30,10 @@ namespace ListTest
             //wer.WriteContent();
             //int s = wer.GetMinContentIndex();
             //Console.WriteLine(s);
-            LinkedList ss = new LinkedList(new int[] { 2, 1 });
+            LinkedList ss = new LinkedList(new int[] {1, 2, 3, 5, 22});
+            LinkedList sds = new(new int[] {1, 2, 3 });
             Console.WriteLine(ss);
-            ss.DeleteSomeElementsFromNeededIndex(1, 1);
+            ss.AddByIndex(0, sds);
             Console.WriteLine(ss);
             //Console.WriteLine(lisst.GetIndexByContent(5));
         }

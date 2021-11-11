@@ -184,13 +184,6 @@ namespace Nodes
             Node tmp;
 
             cnt = 0;
-            amoutnOfElems = 0;
-            tmp = _root;
-            //while (firstToConnect != null)
-            //{
-            //    amountOfElems++;
-            //    firstToConnect = firstToConnect.Next;
-            //}
             amoutnOfElems = GetLenght();
             if (amount < 0 || amount > amoutnOfElems)
             {
@@ -216,17 +209,11 @@ namespace Nodes
             int skipElems;
             Node tmp;
 
-            amountOfElems = 0;
-            tmp = _root;
+
             if (_root == null && amount == 0)
             {
                 return;
             }
-            //while (firstToConnect != null)
-            //{
-            //    amountOfElems++;
-            //    firstToConnect = firstToConnect.Next;
-            //}
             amountOfElems = GetLenght();
             if (amount < 0 || amount > amountOfElems)
             {
@@ -250,19 +237,12 @@ namespace Nodes
             Node secondToConnect;
             int amountOfElems;
 
-            firstToConnect = _root;
-            amountOfElems = 0;
             if (index == 0)
             {
                 DeleteSomeElementsFromHead(amount);
             }
             else
             {
-                //while (firstToConnect != null)
-                //{
-                //    amountOfElems++;
-                //    firstToConnect = firstToConnect.Next;
-                //}
                 amountOfElems = GetLenght();
                 if (index < 0 || amount < 0 || ((index + amount) > amountOfElems)
                     || index > amountOfElems || amount > amountOfElems)
@@ -297,30 +277,45 @@ namespace Nodes
             }
             return lenght;
         }
-        public void DeleteOneNodeByContent(int value)
+        public int DeleteOneNodeByContent(int value)
         {
-            if (_root.Next == null)
+            int index;
+
+            index = 0;
+            if (_root != null)
             {
+
+                if (_root.Next == null)
+                {
+                    if (_root.Value == value)
+                    {
+                        _root = null;
+                    }
+                    throw new ArgumentException("there is no value");
+                }
+
                 if (_root.Value == value)
                 {
-                    _root = null;
+                    _root = _root.Next;
+                    return index;
                 }
-                return;
-            }
-
-
-            Node prev = _root;
-            Node cur = _root.Next;
-            while (cur != null)
-            {
-                if (cur.Value == value)
+                Node prev = _root;
+                Node cur = _root.Next;
+                while (cur != null)
                 {
-                    prev.Next = cur.Next;
-                    break;
+                    if (cur.Value == value)
+                    {
+                        prev.Next = cur.Next;
+                        index++;
+                        break;
+                    }
+                    index++;
+                    prev = cur;
+                    cur = cur.Next;
                 }
-                prev = cur;
-                cur = cur.Next;
+                return index;
             }
+            throw new ArgumentException("there is no value");
         }
 
         public int DeleteAllNodesWithSameContent(int content)
@@ -328,38 +323,43 @@ namespace Nodes
             int cnt = 0;
             Node tmp;
             Node prevNode;
-            if (_root.Next == null)
+            if (_root != null)
             {
-                if (_root.Value == content)
+
+                if (_root.Next == null)
                 {
-                    _root = null;
-                    cnt++;
+                    if (_root.Value == content)
+                    {
+                        _root = null;
+                        cnt++;
+                    }
+                    return cnt;
+                }
+                while (_root.Next != null)
+                {
+                    if (_root.Value != content)
+                        break;
+                    _root = _root.Next;
+                }
+                prevNode = _root;
+                tmp = _root.Next;
+                while (tmp != null)
+                {
+                   if (tmp.Value == content)
+                   {
+                        tmp = tmp.Next;
+                        prevNode.Next = tmp;
+                        cnt++;
+                   }
+                   else
+                   {
+                        tmp = tmp.Next;
+                        prevNode = prevNode.Next;
+                   }
                 }
                 return cnt;
             }
-            while (_root.Next != null)
-            {
-                if (_root.Value != content)
-                    break;
-                _root = _root.Next;
-            }
-            prevNode = _root;
-            tmp = _root.Next;
-            while (tmp != null)
-            {
-               if (tmp.Value == content)
-               {
-                    tmp = tmp.Next;
-                    prevNode.Next = tmp;
-                    cnt++;
-               }
-               else
-               {
-                    tmp = tmp.Next;
-                    prevNode = prevNode.Next;
-               }
-            }
-            return cnt;
+            throw new ArgumentException("there is no value");
         }
 
         #endregion
@@ -371,43 +371,70 @@ namespace Nodes
             return _root.MaxIndex + 1;
         }
 
-        public Node getNodeByIndex(int index)
+        public int getValueByIndex(int index)
         {
             Node tmp;
+            int maxLen;
 
+            if (_root == null)
+            {
+                throw new Exception("List are empty");
+            }
+            maxLen = GetLenght();
+            if (maxLen < index)
+            {
+                throw new IndexOutOfRangeException("Too big index");
+            }
             tmp = _root;
-            while (tmp.Index != index && tmp.Next != null)
+            while (index-- != 0)
             {
                 tmp = tmp.Next;
             }
 
-            return tmp;
+            return tmp.Value;
         }
 
         public int GetIndexByContent(int content)
         {
             Node tmp;
+            int index;
 
+            if (_root == null)
+            {
+                throw new Exception("List are empty");
+            }
             tmp = _root;
+            index = 0;
             while (tmp.Value != content && tmp != null)
             {
                 tmp = tmp.Next;
+                index++;
             }
-            return tmp.Index;
+            return index;
         }
         public void SetContentByIndex(int index, int value)
         {
+            //Не уверен на счет логики, если мы получим индекс
+            // больше макс индекса, мы ведь просто
+            // вернем такой же лист, исключения не нужны
             Node tmp = _root;
+            int indexInList;
 
-            while (tmp.Index != index && tmp != null)
+            if (_root == null)
             {
+                throw new Exception("List are empty");
+            }
+            indexInList = 0;
+            while (tmp != null)
+            {
+                if (index == indexInList)
+                {
+                    tmp.Value = value;
+                    break;
+                }
+                indexInList++;
                 tmp = tmp.Next;
             }
-            if (tmp == null)
-            {
-                throw new ArgumentException("You took bad index");
-            }
-            tmp.Value = value;
         }
 
         public void ReverseList()
@@ -417,48 +444,52 @@ namespace Nodes
             Node tmp2;
             Node tmp3;
 
+            if (_root != null)
+            {
 
-            //if на один и на  2 элема
-            if (_root.Next == null)
-            {
-                return;
-            }
-            if (_root.Next.Next == null)
-            {
-                tmp1 = _root.Next;
-                _root.Next = null;
-                tmp1.Next = _root;
-                _root = tmp1;
-            }
-            tmp1 = _root;
-            tmp2 = _root.Next;
-            tmp3 = _root.Next.Next;
-            tmp1.Next = null;
-            while (tmp2.Next != null)
-            {
-                tmp2.Next = tmp1;//2 на 1 .. 5 na 4
-                tmp1 = tmp3.Next;//now 4 .. now 7
-                if (tmp3.Next == null)
+                if (_root.Next == null)
                 {
-                    tmp3.Next = tmp2;
-                    _root = tmp3;
-                    break;
+                    return;
                 }
-                tmp3.Next = tmp2;//3 na 2 .. 6 na 5
-                tmp2 = tmp1.Next;//now 5 .. 
-                if (tmp1.Next == null)
+                if (_root.Next.Next == null)
                 {
-                    tmp1.Next = tmp3;
-                    _root = tmp1;
-                    break;
-                }
-                tmp1.Next = tmp3;//4 na 3
-                tmp3 = tmp2.Next;//now 6
-                if (tmp2.Next == null)
-                {
+                    tmp1 = _root;
+                    tmp2 = _root.Next;
+                    tmp1.Next = null;
                     tmp2.Next = tmp1;
                     _root = tmp2;
-                    break;
+                    return;
+                }
+                tmp1 = _root;
+                tmp2 = _root.Next;
+                tmp3 = _root.Next.Next;
+                tmp1.Next = null;
+                while (tmp2.Next != null)
+                {
+                    tmp2.Next = tmp1;//2 на 1 .. 5 na 4
+                    tmp1 = tmp3.Next;//now 4 .. now 7
+                    if (tmp3.Next == null)
+                    {
+                        tmp3.Next = tmp2;
+                        _root = tmp3;
+                        break;
+                    }
+                    tmp3.Next = tmp2;//3 na 2 .. 6 na 5
+                    tmp2 = tmp1.Next;//now 5 .. 
+                    if (tmp1.Next == null)
+                    {
+                        tmp1.Next = tmp3;
+                        _root = tmp1;
+                        break;
+                    }
+                    tmp1.Next = tmp3;//4 na 3
+                    tmp3 = tmp2.Next;//now 6
+                    if (tmp2.Next == null)
+                    {
+                        tmp2.Next = tmp1;
+                        _root = tmp2;
+                        break;
+                    }
                 }
             }
             
@@ -568,106 +599,177 @@ namespace Nodes
 
         #region methods to sort list
 
-        //public void SortFromMinToMax ()
-        //{
-        //    Node head;
-        //    Node saveMin;
-        //    Node tmp;
-        //    Node treat;
+        public void SortFromMinToMax()
+        {
+            Node newRoot;
+            Node newNext;
+            int minCont;
+            if (_root != null)
+            {
 
-        //    saveMin = GetMinContent();
-        //    DeleteByIndex(saveMin.Index);
-        //    head = saveMin;
-        //    treat = head;
-        //    tmp = _root;
-        //    while (tmp != null)
-        //    {
-        //        saveMin = GetMinContent();
-        //        head.Next = saveMin;
-        //        head = head.Next;
-        //        DeleteByIndex(saveMin.Index);
-        //        tmp = _root;
-        //    }
-        //    _root = treat;
-        //}
-        //public void SortFromMaxToMin()
-        //{
-        //    Node head;
-        //    Node saveMax;
-        //    Node tmp;
-        //    Node treat;
+                if (_root.Next == null)
+                {
+                    return;
+                }
+                if (_root.Next.Next == null)
+                {
+                    if (_root.Value < _root.Next.Value)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        newRoot = _root.Next;
+                        _root.Next = null;
+                        newRoot.Next = _root;
+                        _root = newRoot;
+                        return;
+                    }
+                }
+                newRoot = new(GetMinContent());
+                minCont = newRoot.Value;
+                newNext = newRoot;
+                while (_root.Next != null)
+                {
 
-        //    saveMax = GetMaxContent();
-        //    DeleteByIndex(saveMax.Index);
-        //    head = saveMax;
-        //    treat = head;
-        //    tmp = _root;
-        //    while (tmp != null)
-        //    {
-        //        saveMax = GetMaxContent();
-        //        head.Next = saveMax;
-        //        head = head.Next;
-        //        DeleteByIndex(saveMax.Index);
-        //        tmp = _root;
-        //    }
-        //    _root = treat;
-        //}
+                    DeleteOneNodeByContent(minCont);
+                    newNext.Next = new(GetMinContent());
+                    newNext = newNext.Next;
+                    minCont = newNext.Value;
+                }
+                _root = newRoot;
+            }
+        }
+
+        public void SortFromMaxToMin()
+        {
+            Node newRoot;
+            Node newNext;
+            int maxCont;
+            if (_root != null)
+            {
+
+                if (_root.Next == null)
+                {
+                    return;
+                }
+                if (_root.Next.Next == null)
+                {
+                    if (_root.Value > _root.Next.Value)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        newRoot = _root.Next;
+                        _root.Next = null;
+                        newRoot.Next = _root;
+                        _root = newRoot;
+                        return;
+                    }
+                }
+                newRoot = new(GetMaxContent());
+                maxCont = newRoot.Value;
+                newNext = newRoot;
+                while (_root.Next != null)
+                {
+
+                    DeleteOneNodeByContent(maxCont);
+                    newNext.Next = new(GetMaxContent());
+                    newNext = newNext.Next;
+                    maxCont = newNext.Value;
+                }
+                _root = newRoot;
+            }
+        }
+
         #endregion
 
 
         #region methods to Work with another LinkedLists
 
-        public void AddAnotherListToFront(LinkedList newList)
+        public void AddFront(LinkedList newList)
         {
             Node thisListEnd;
 
-            thisListEnd = _root;
-            while (thisListEnd.Next != null)
+            if (newList._root != null)
             {
-                thisListEnd = thisListEnd.Next;
+                if (_root != null)
+                {
+                    thisListEnd = _root;
+                    while (thisListEnd.Next != null)
+                    {
+                        thisListEnd = thisListEnd.Next;
+                    }
+                    thisListEnd.Next = newList._root;
+                }
+                else
+                {
+                    _root = newList._root;
+                }
             }
-            thisListEnd.Next = newList._root;
         }
 
-        public void AddAnotherListAtBack(LinkedList newList)
+        public void AddBack(LinkedList newList)
         {
             Node newRoot;
-
-            newRoot = newList._root;
-            while (newList._root.Next != null)
+            if (newList._root != null)
             {
-                newList._root = newList._root.Next;
+                if (_root != null)
+                {
+                    newRoot = newList._root;
+                    while (newList._root.Next != null)
+                    {
+                        newList._root = newList._root.Next;
+                    }
+                    newList._root.Next = _root;
+                    _root = newRoot;
+                }
+                else
+                {
+                    _root = newList._root;
+                }
             }
-            newList._root.Next = _root;
-            _root = newRoot;
         }
 
-        public void AddAnotherListByIndex(LinkedList newList, int index)
+        public void AddByIndex(int index, LinkedList newList)
         {
             Node oldRootStart;
             Node oldRootEnd;
 
             Node newListEnd;
             Node newListStart;
-
             int cnt;
-
-            cnt = 0;
-            newListStart = newList._root;
-            while (newList._root.Next != null)
+            if (index == 0)
             {
-                newList._root = newList._root.Next;
+                AddBack(newList);
             }
-            newListEnd = newList._root;
-            oldRootStart = _root;
-            while (oldRootStart.Next != null && cnt < index)
+            else if (index == GetLenght())
             {
-                oldRootStart = oldRootStart.Next;
-                cnt++;
+                AddFront(newList);
             }
-            oldRootEnd = oldRootStart.Next;
-            oldRootStart.Next = newListStart;
-            newListEnd.Next = oldRootEnd;
+            else
+            {
+                if (newList._root != null)
+                {
+                    cnt = 0;
+                    newListStart = newList._root;
+                    while (newList._root.Next != null)
+                    {
+                        newList._root = newList._root.Next;
+                    }
+                    newListEnd = newList._root;
+                    oldRootStart = _root;
+                    while (oldRootStart.Next != null && cnt < index)
+                    {
+                        oldRootStart = oldRootStart.Next;
+                        cnt++;
+                    }
+                    oldRootEnd = oldRootStart.Next;
+                    oldRootStart.Next = newListStart;
+                    newListEnd.Next = oldRootEnd;
+                }
+            }
         }
 
         #endregion

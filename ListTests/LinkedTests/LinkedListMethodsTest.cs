@@ -185,20 +185,162 @@ namespace ListTests
             actual.DeleteSomeElementsFromNeededIndex(index, amount);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestCase(5, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(2, new int[] { 2, 1 })]
+        [TestCase(1, new int[] { 1 })]
+        [TestCase(7, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(0, new int[] { })]
+        [TestCase(5, new int[] { 23, 22, 43, 6457, 0 })]
+        [TestCase(5, new int[] { -23, -33, -123, -4444, 5555555 })]
+        public static void GetLenghtTest(int expected, int [] arr)
+        {
+            LinkedList test = new LinkedList(arr);
+            Assert.AreEqual(expected, test.GetLenght());
+        }
+
+        [TestCase(3, 2, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(2, 0, new int[] { 2, 1 })]
+        [TestCase(1, 0, new int[] { 1 })]
+        [TestCase(1, 6, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(23, 0, new int[] { 23, 22, 43, 6457, 0 })]
+        [TestCase(5555555, 4, new int[] { -23, -33, -123, -4444, 5555555 })]
+        public static void GetValueByIndexTest(int expected, int index, int[] arr)
+        {
+            LinkedList test = new LinkedList(arr);
+            Assert.AreEqual(expected, test.getValueByIndex(index));
+        }
+
+        [TestCase(3, 2, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(2, 0, new int[] { 2, 1 })]
+        [TestCase(1, 0, new int[] { 1 })]
+        [TestCase(1, 0, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(23, 0, new int[] { 23, 22, 43, 6457, 0 })]
+        [TestCase(5555555, 4, new int[] { -23, -33, -123, -4444, 5555555 })]
+        public static void GetIndexByContentTest(int value, int expected, int [] arr)
+        {
+            LinkedList test = new LinkedList(arr);
+            Assert.AreEqual(expected, test.GetIndexByContent(value));
+        }
+
+        [TestCase(3, 100, new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 3, 100, 22 })]
+        [TestCase(0, 100, new int[] { 2, 1 }, new int[] { 100, 1 })]
+        [TestCase(100, 500, new int[] { 1 }, new int[] { 1 })]
+        [TestCase(1, 0, new int[] { 1, 1, 1, 1, 1, 1, 1 }, new int[] { 1, 0, 1, 1, 1, 1, 1 })]
+        [TestCase(0, 123, new int[] { 23, 22, 43, 6457, 0 }, new int[] { 123, 22, 43, 6457, 0 })]
+        [TestCase(0, 4, new int[] { 1 }, new int[] { 4 })]
+
+        public static void SetContentByIndex(int index, int value, int [] arr, int[] expected)
+        {
+            LinkedList expectedL = new LinkedList(expected);
+            LinkedList actual = new LinkedList(arr);
+            actual.SetContentByIndex(index, value);
+            Assert.AreEqual(expectedL, actual);
+        }
+
+
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { 22, 5, 3, 2, 1 })]
+        [TestCase(new int[] { 1 }, new int[] { 1 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1, 1, 1 }, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        public static void ReverseListTest(int [] actualArr, int[] expectedArr)
+        {
+            LinkedList expected = new LinkedList(expectedArr);
+            LinkedList actual = new LinkedList(actualArr);
+            actual.ReverseList();
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(new int[] { 1 }, new int[] { 1 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 22, 33, 11, 54, 1, 0, 134 }, new int[] { 0, 1, 11, 22, 33, 54, 134 })]
+        public static void SortFromMinToMaxTest(int[] actualArr, int[] expectedArr)
+        {
+            LinkedList expected = new LinkedList(expectedArr);
+            LinkedList actual = new LinkedList(actualArr);
+            actual.SortFromMinToMax();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { 22, 5, 3, 2, 1 })]
+        [TestCase(new int[] { 1 }, new int[] { 1 })]
+        [TestCase(new int[] { }, new int[] { })]
+        [TestCase(new int[] { 22, 33, 11, 54, 1, 0, 134 }, new int[] { 134, 54, 33, 22, 11, 1, 0 })]
+        public static void SortFromMaxToMinTest(int[] actualArr, int[] expectedArr)
+        {
+            LinkedList expected = new LinkedList(expectedArr);
+            LinkedList actual = new LinkedList(actualArr);
+            actual.SortFromMaxToMin();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(2, 1, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(134, 6, new int[] { 22, 33, 11, 54, 1, 0, 134 })]
+        [TestCase(22, 0, new int[] { 22, 33, 11, 54, 1, 0, 134 })]
+        public static void DeleteOneNodeByContentTest(int value,int exVal, int[] actualArr)
+        {
+            int actual;
+            LinkedList actualList = new LinkedList(actualArr);
+            actual = actualList.DeleteOneNodeByContent(value);
+            Assert.AreEqual(exVal, actual);
+        }
+
+        [TestCase(2, 1, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(11, 2, new int[] { 22, 33, 11, 54, 11, 0, 134 })]
+        [TestCase(543, 0, new int[] { 22, 33, 11, 54, 1, 0, 134 })]
+        public static void DeleteAllNodesWithSameContentTest(int value, int expected, int [] arr)
+        {
+            int actual;
+            LinkedList actualList = new LinkedList(arr);
+            actual = actualList.DeleteAllNodesWithSameContent(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 3}, new int[] { 1, 2, 3, 5, 22, 1, 2, 3 })]
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { }, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(new int[] {}, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3})]
+        [TestCase(new int[] { }, new int[] {  }, new int[] {})]
+        public static void AddFront(int[] testAr, int [] addToTest, int[] expectedArr)
+        {
+            LinkedList expected = new LinkedList(expectedArr);
+            LinkedList added = new LinkedList(addToTest);
+            LinkedList actual = new LinkedList(testAr);
+            actual.AddFront(added);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 3 }, new int[] {1, 2, 3, 1, 2, 3, 5, 22 })]
+        [TestCase(new int[] { 1, 2, 3, 5, 22 }, new int[] { }, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(new int[] { }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { }, new int[] { }, new int[] { })]
+        public static void AddBackTest(int[] testAr, int[] addToTest, int[] expectedArr)
+        {
+            LinkedList expected = new LinkedList(expectedArr);
+            LinkedList added = new LinkedList(addToTest);
+            LinkedList actual = new LinkedList(testAr);
+            actual.AddBack(added);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0, new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 1, 2, 3, 5, 22 })]
+        [TestCase(1, new int[] { 1, 2, 3, 5, 22 }, new int[] { }, new int[] { 1, 2, 3, 5, 22 })]
+        [TestCase(1, new int[] { 44 }, new int[] { 1, 2, 3 }, new int[] { 44, 1, 2, 3 })]
+        [TestCase(99, new int[] { }, new int[] { }, new int[] { })]
+        public static void AddByIndexTest(int index, int[] testAr, int[] addToTest, int[] expectedArr)
+        {
+            LinkedList expected = new LinkedList(expectedArr);
+            LinkedList added = new LinkedList(addToTest);
+            LinkedList actual = new LinkedList(testAr);
+            actual.AddByIndex(index, added);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
 
 
 /*
-    вернуть длину
-    доступ по индексу 
-    первый индекс по значению
-    изменение по индексу
-    реверс (123 -> 321)
-    сортировка по возрастанию
-    сортировка по убыванию
-    удаление по значению первого (?вернуть индекс)
-    удаление по значению всех (?вернуть кол-во)
+
     добавление списка (вашего самодельного) в конец
     добавление списка в начало
     добавление списка по индексу

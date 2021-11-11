@@ -207,7 +207,6 @@ namespace Nodes
         {
             int amountOfElems;
             int skipElems;
-            Node tmp;
 
 
             if (_root == null && amount == 0)
@@ -307,13 +306,13 @@ namespace Nodes
                     {
                         prev.Next = cur.Next;
                         index++;
-                        break;
+                        return index;
                     }
                     index++;
                     prev = cur;
                     cur = cur.Next;
                 }
-                return index;
+                throw new ArgumentException("there is no value");
             }
             throw new ArgumentException("there is no value");
         }
@@ -332,8 +331,9 @@ namespace Nodes
                     {
                         _root = null;
                         cnt++;
+                        return cnt;
                     }
-                    return cnt;
+                    throw new ArgumentException("there is no value");
                 }
                 while (_root.Next != null)
                 {
@@ -357,7 +357,7 @@ namespace Nodes
                         prevNode = prevNode.Next;
                    }
                 }
-                return cnt;
+                throw new ArgumentException("there is no value");
             }
             throw new ArgumentException("there is no value");
         }
@@ -365,11 +365,6 @@ namespace Nodes
         #endregion
 
         #region get some data
-
-        public int GetMaxIndex()
-        {
-            return _root.MaxIndex + 1;
-        }
 
         public int getValueByIndex(int index)
         {
@@ -381,9 +376,9 @@ namespace Nodes
                 throw new Exception("List are empty");
             }
             maxLen = GetLenght();
-            if (maxLen < index)
+            if (maxLen < index || index < 0)
             {
-                throw new IndexOutOfRangeException("Too big index");
+                throw new Exception("Too big index");
             }
             tmp = _root;
             while (index-- != 0)
@@ -409,8 +404,12 @@ namespace Nodes
             {
                 tmp = tmp.Next;
                 index++;
+                if (tmp.Value == content)
+                {
+                    return index;
+                }
             }
-            return index;
+            throw new Exception("there is no needed value");
         }
         public void SetContentByIndex(int index, int value)
         {
@@ -421,6 +420,10 @@ namespace Nodes
             int indexInList;
 
             if (_root == null)
+            {
+                throw new Exception("List are empty");
+            }
+            if (index < 0 || index > GetLenght())
             {
                 throw new Exception("List are empty");
             }

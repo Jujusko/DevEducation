@@ -43,7 +43,7 @@ namespace ListTests.LinkedTests
             ArrayList actual;
 
             actual = new ArrayList(new int[] { 23, 22, 43, 6457, 0 });
-            Assert.Throws<ArgumentException>(() => actual.ChangeContentByIndex(index));
+            Assert.Throws<ArgumentException>(() => actual.ChangeContentByIndex(123,index));
         }
     }
 }

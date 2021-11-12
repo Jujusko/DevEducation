@@ -10,14 +10,10 @@ namespace ListTest
         static void Main(string[] args)
         {
 
-            int[] a = new int[] { 1, 2, 3, 4, 5 };
+            int[] a = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             DLList test = new(a);
             Console.WriteLine(test);
-            test.AddFront(555);
-            Console.WriteLine(test);
-            test.AddBack(999);
-            Console.WriteLine(test);
-            test.AddByIndex(6, 100);
+            test.DeleteByIndexSomeElems(0,2);
             Console.WriteLine(test);
         }
     }

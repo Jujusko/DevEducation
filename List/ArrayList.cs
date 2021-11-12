@@ -338,7 +338,6 @@ namespace List
         {
             int cnt;
             int amount;
-            int Len;
 
             cnt = Lenght;
             cnt--;

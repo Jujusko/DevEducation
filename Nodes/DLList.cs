@@ -751,21 +751,117 @@ namespace Nodes
             }
         }
 
-        public void DeleteAllByValue(int value)
+        public int DeleteAllByValue(int value)
         {
             DLNode tmp;
+            int cnt;
 
+            cnt = 0;
             if (_root != null)
             {
-               if (_root.Next == null && _root.Value != null)
-               {
-
-               }
+                if (_root.Next == null && _root.Value != value)
+                {
+                    throw new Exception("Bad value");
+                }
+                while (_root.Value == value && _root != null)
+                {
+                    _root = _root.Next;
+                    cnt++;
+                    if (_root == null)
+                    {
+                        return cnt;
+                    }
+                    _root.Prev = null;
+                }
+                tmp = _root;
+                while (tmp.Next != null)
+                {
+                    if (tmp.Value == value)
+                    {
+                        tmp.Next.Prev = tmp.Prev;
+                        tmp.Prev.Next = tmp.Next;
+                        cnt++;
+                    }
+                    tmp = tmp.Next;
+                }
+                if (tmp.Value == value)
+                {
+                    tmp = tmp.Prev;
+                    tmp.Next = null;
+                    cnt++;
+                }
+                return cnt;
             }
             else
             {
                 throw new Exception("List is empty");
             }
+        }
+        public void AddFront(DLList newList)
+        {
+            if (newList._root != null)
+            {
+                if (_root != null)
+                {
+                    _tail.Next = newList._root;
+                    newList._root.Prev = _tail;
+                }
+            }
+            if (_root == null && newList._root != null)
+            {
+                _root = newList._root;
+                _tail = newList._tail;
+            }
+            else if (newList._root == null)
+            {
+                return;
+            }
+        }
+        public void AddBack(DLList newList)
+        {
+            if (_root == null)
+            {
+                _root = newList._root;
+                _tail = newList._tail;
+                return;
+            }
+            if (newList._root == null)
+            {
+                return;
+            }
+            newList._tail.Next = _root;
+            _root.Prev = newList._tail;
+            _root = newList._root;
+            Len += newList.Len;
+        }
+
+        public void AddByIndex(DLList newList, int index)
+        {
+            DLNode tmp;
+            DLNode tmp2;
+            if (_root == null)
+            {
+                throw new Exception("List is empty");
+            }
+            if (index > Len)
+            {
+                throw new Exception("you took bad index");
+            }
+            if (newList._root == null)
+            {
+                return;
+            }
+            tmp = _root;
+            while (--index > 0)
+            {
+                tmp = tmp.Next;
+            }
+            tmp2 = tmp.Next;
+            Console.WriteLine(tmp.Value);
+            Console.WriteLine(tmp2.Value);
+            tmp.Next = newList._root;
+            tmp2.Prev = newList._tail;
+            newList._tail.Next = tmp2;
         }
         #region Equal and ToString
         public override bool Equals(object obj)
@@ -831,18 +927,5 @@ namespace Nodes
 }
 
 /* 
-
-удаление по значению первого (?вернуть индекс)
-удаление по значению всех (?вернуть кол-во)
-3 конструктора (пустой, на основе одного элемента, на основе массива )
-добавление списка (вашего самодельного) в конец
-добавление списка в начало
-добавление списка по индексу
-    
-
-
-
-
-
 доступ по индексу написать сетгет
 */

@@ -10,10 +10,12 @@ namespace ListTest
         static void Main(string[] args)
         {
 
-            int[] a = new int[] { -455, 123,-1, -32, -123, 1, 0, 1234, -1000 };
+            int[] a = new int[] { 111, 222, 333 };
+            int[] b = new int[] {1, 2, 3 };
             DLList test = new(a);
+            DLList ttt = new(b);
             Console.WriteLine(test);
-            test.DeleteOneByValue(123);
+            test.AddByIndex(ttt, 1);
             Console.WriteLine(test);
         }
     }

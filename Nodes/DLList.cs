@@ -368,7 +368,405 @@ namespace Nodes
                 index++;
             }
             throw new ArgumentException("There is no needed value");
-        }// NOTESTS
+        }
+        
+        public void ChangeByIndex(int index, int value)
+        {
+            int     rootOrTail;
+            DLNode  tmp;
+
+            if (_root != null)
+            {
+                if (index < 0 || index >= Len)
+                {
+                    throw new Exception($"You took bad index. Take arg less than {Len} and bigger than 0");
+                }
+                rootOrTail = Len / 2 - index;
+                if (rootOrTail > 0)
+                {
+                    tmp = _root;
+
+                    while (--index >= 0)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Value = value;
+                }
+                else
+                {
+                    tmp = _tail;
+                    rootOrTail = Len - index;
+                    rootOrTail--;
+                    while (--rootOrTail >= 0)
+                    {
+                        tmp = tmp.Prev;
+                    }
+                    tmp.Value = value;
+                }
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+        }
+
+        public void Reverse()
+        {
+            DLNode reversed;
+            DLNode saveHead;
+            
+            if (_root != null && _root.Next != null)
+            {
+                reversed = new(_tail.Value);
+                reversed.Prev = null;
+                saveHead = reversed;
+                while (_tail.Prev != null)
+                {
+                    _tail = _tail.Prev;
+                    reversed.Next = new(_tail.Value);
+                    reversed.Next.Prev = reversed;
+                    reversed = reversed.Next;
+                }
+                _root = saveHead;
+            }
+            else
+            {
+                if (_root.Next != null)
+                {
+                    _root = _tail;
+                    _root.Next = _tail.Prev;
+                    _root.Next.Prev = _root;
+                }
+            }
+        }
+
+        #region Min&Max
+        public int GetMaxValue()
+        {
+            int     maxValue;
+            DLNode  tmp;
+            DLNode tmp2;
+
+            if (_root != null)
+            {
+                tmp = _root;
+                tmp2 = _tail;
+                maxValue = tmp.Value;
+                while (tmp.Value != tmp2.Value)
+                {
+                    if (maxValue < tmp.Value)
+                    {
+                        maxValue = tmp.Value;
+                    }
+                    if (maxValue < tmp2.Value)
+                    {
+                        maxValue = tmp2.Value;
+                    }
+                    tmp = tmp.Next;
+                    if (tmp == tmp2)//NEED TO OPTIM
+                    {
+                        if (maxValue < tmp.Value)
+                        {
+                            maxValue = tmp.Value;
+                        }
+                        break;
+                    }
+                    tmp2 = tmp2.Prev;
+                    if (tmp == tmp2)
+                    {
+                        if (maxValue < tmp2.Value)
+                        {
+                            maxValue = tmp2.Value;
+                        }
+                        break;
+                    }
+                }
+                return maxValue;
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+        }
+
+        public int GetMinValue()
+        {
+            int maxValue;
+            DLNode tmp;
+            DLNode tmp2;
+
+            if (_root != null)
+            {
+                tmp = _root;
+                tmp2 = _tail;
+                maxValue = tmp.Value;
+                while (tmp.Value != tmp2.Value)
+                {
+                    if (maxValue > tmp.Value)
+                    {
+                        maxValue = tmp.Value;
+                    }
+                    if (maxValue > tmp2.Value)
+                    {
+                        maxValue = tmp2.Value;
+                    }
+                    tmp = tmp.Next;
+                    if (tmp == tmp2)//NEED TO OPTIM
+                    {
+                        if (maxValue > tmp.Value)
+                        {
+                            maxValue = tmp.Value;
+                        }
+                        break;
+                    }
+                    tmp2 = tmp2.Prev;
+                    if (tmp == tmp2)
+                    {
+                        if (maxValue > tmp2.Value)
+                        {
+                            maxValue = tmp2.Value;
+                        }
+                        break;
+                    }
+                }
+                return maxValue;
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+        }
+
+        public int FindIndexOfMaxContent()
+        {
+            int neededIndex;
+            int index;
+            int maxValue;
+
+            neededIndex = 0;
+            index = 0;
+            DLNode tmp;
+            DLNode tmp2;
+
+            if (_root != null)
+            {
+                tmp = _root;
+                tmp2 = _tail;
+                maxValue = tmp.Value;
+                while (tmp.Value != tmp2.Value)
+                {
+                    if (maxValue < tmp.Value)
+                    {
+                        maxValue = tmp.Value;
+                        neededIndex = index;
+                    }
+                    if (maxValue < tmp2.Value)
+                    {
+                        maxValue = tmp2.Value;
+                        neededIndex = Len - index - 1;
+                    }
+                    tmp = tmp.Next;
+                    if (tmp == tmp2)//NEED TO OPTIM
+                    {
+                        if (maxValue < tmp.Value)
+                        {
+                            maxValue = tmp.Value;
+                            neededIndex = index + 1;
+                        }
+                        return neededIndex;
+                    }
+                    tmp2 = tmp2.Prev;
+                    if (tmp == tmp2)
+                    {
+                        if (maxValue < tmp2.Value)
+                        {
+                            maxValue = tmp2.Value;
+                            neededIndex = Len - index - 1;
+                        }
+                        return neededIndex;
+                    }
+                    index++;
+                }
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+
+            return neededIndex;
+        }
+
+        public int FindIndexOfMinContent()
+        {
+            int neededIndex;
+            int index;
+            int minValue;
+
+            neededIndex = 0;
+            index = 0;
+            DLNode tmp;
+            DLNode tmp2;
+
+            if (_root != null)
+            {
+                tmp = _root;
+                tmp2 = _tail;
+                minValue = tmp.Value;
+                while (tmp.Value != tmp2.Value)
+                {
+                    if (minValue > tmp.Value)
+                    {
+                        minValue = tmp.Value;
+                        neededIndex = index;
+                    }
+                    if (minValue > tmp2.Value)
+                    {
+                        minValue = tmp2.Value;
+                        neededIndex = Len - index - 1;
+                    }
+                    tmp = tmp.Next;
+                    if (tmp == tmp2)//NEED TO OPTIM
+                    {
+                        if (minValue > tmp.Value)
+                        {
+                            minValue = tmp.Value;
+                            neededIndex = index + 1;
+                        }
+                        return neededIndex;
+                    }
+                    tmp2 = tmp2.Prev;
+                    if (tmp == tmp2)
+                    {
+                        if (minValue > tmp2.Value)
+                        {
+                            minValue = tmp2.Value;
+                            neededIndex = Len - (index + 1) - 1;
+                        }
+                        return neededIndex;
+                    }
+                    index++;
+                }
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+
+            return neededIndex;
+        }
+        #endregion
+
+        #region SortingMethods
+        public void SortByAscending()
+        {
+            LinkedList sryMax = new();
+            Node sryAgain;
+            DLNode newRoot;
+            DLNode saveHead;
+
+            while (_root != null)
+            {
+                sryMax.AddFront(_root.Value);
+                _root = _root.Next;
+            }
+            sryMax.SortFromMinToMax();
+            sryAgain = sryMax.GetRoot();
+            newRoot = new(sryAgain.Value);
+            saveHead = newRoot;
+            while (sryAgain.Next != null)
+            {
+                sryAgain = sryAgain.Next;
+                newRoot.Next = new(sryAgain.Value);
+                newRoot.Next.Prev = newRoot;
+                newRoot = newRoot.Next;
+            }
+            _root = saveHead;
+        }
+
+        public void SortByDescending()
+        {
+            LinkedList sryMax = new();
+            Node sryAgain;
+            DLNode newRoot;
+            DLNode saveHead;
+
+            while (_root != null)
+            {
+                sryMax.AddFront(_root.Value);
+                _root = _root.Next;
+            }
+            sryMax.SortFromMaxToMin();
+            sryAgain = sryMax.GetRoot();
+            newRoot = new(sryAgain.Value);
+            saveHead = newRoot;
+            while (sryAgain.Next != null)
+            {
+                sryAgain = sryAgain.Next;
+                newRoot.Next = new(sryAgain.Value);
+                newRoot.Next.Prev = newRoot;
+                newRoot = newRoot.Next;
+            }
+            _root = saveHead;
+        }
+        #endregion
+
+        public void DeleteOneByValue(int value)
+        {
+            DLNode tmp;
+
+            if (_root != null)
+            {
+                if (_root.Value == value)
+                {
+                    _root = _root.Next;
+                    if (_root != null)
+                    {
+                        _root.Prev = null;
+                    }
+                    return;
+                }
+                else if (_tail.Value == value)
+                {
+                    _tail = _tail.Prev;
+                    _tail.Next = null;
+                }
+                else if (_root.Next == null)
+                {
+                    throw new Exception("Bad value");
+                }
+                else
+                {
+                    tmp = _root;
+                    while (tmp.Value != value)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Next.Prev = tmp.Prev;
+                    tmp.Prev.Next = tmp.Next;
+                }
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+        }
+
+        public void DeleteAllByValue(int value)
+        {
+            DLNode tmp;
+
+            if (_root != null)
+            {
+               if (_root.Next == null && _root.Value != null)
+               {
+
+               }
+            }
+            else
+            {
+                throw new Exception("List is empty");
+            }
+        }
         #region Equal and ToString
         public override bool Equals(object obj)
         {
@@ -397,6 +795,22 @@ namespace Nodes
                 tmp2 = tmp2.Next;
                 tmp1 = tmp1.Next;
             }
+            tmp1 = _tail;
+            tmp2 = myNode._tail;
+            while (tmp2 != null && tmp1 != null)
+            {
+                if ((tmp1.Prev == null && tmp2.Prev != null)
+                || (tmp1.Prev != null && tmp2.Prev == null))
+                {
+                    return false;
+                }
+                if (tmp2.Value != tmp1.Value)
+                {
+                    return false;
+                }
+                tmp2 = tmp2.Prev;
+                tmp1 = tmp1.Prev;
+            }
             return true;
         }
         public override string ToString()
@@ -417,11 +831,18 @@ namespace Nodes
 }
 
 /* 
-    доступ по индексу написать сетгет
-    первый индекс по значению
-    изменение по индексу
-    реверс (123 -> 321)
-    поиск значения максимального элемента
-    поиск значения минимального элемента
-    поиск индекс максимального элемента
+
+удаление по значению первого (?вернуть индекс)
+удаление по значению всех (?вернуть кол-во)
+3 конструктора (пустой, на основе одного элемента, на основе массива )
+добавление списка (вашего самодельного) в конец
+добавление списка в начало
+добавление списка по индексу
+    
+
+
+
+
+
+доступ по индексу написать сетгет
 */

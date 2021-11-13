@@ -835,7 +835,10 @@ namespace Nodes
             return s;
         }
 
-       
+       public Node GetRoot()
+        {
+            return _root;
+        }
 
 
     }

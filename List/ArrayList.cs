@@ -423,5 +423,10 @@ namespace List
             }
             return s;
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,11 +10,11 @@ namespace ListTests.DLinkedTests
 {
     class DoubleLinkedTests
     {
-        [TestCase(44, new int[] {44, 44, 44, 44,44 }, new int[] { 44, 44, 44, 44, 44, 44 })]
+        [TestCase(44, new int[] { 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44 })]
         [TestCase(0, new int[] { 55, 33, 22, 33 }, new int[] { 55, 33, 22, 33, 0 })]
         [TestCase(-9, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5, -9 })]
         [TestCase(1, new int[] { }, new int[] { 1 })]
-        public static void AddFrontTest(int value, int[]arr, int []expectedArr)
+        public static void AddFrontTest(int value, int[] arr, int[] expectedArr)
         {
             DLList expected = new(expectedArr);
             DLList actual = new DLList(arr);
@@ -23,7 +23,7 @@ namespace ListTests.DLinkedTests
         }
 
         [TestCase(44, new int[] { 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44 })]
-        [TestCase(0, new int[] { 55, 33, 22, 33 }, new int[] {0, 55, 33, 22, 33})]
+        [TestCase(0, new int[] { 55, 33, 22, 33 }, new int[] { 0, 55, 33, 22, 33 })]
         [TestCase(-9, new int[] { 1, 2, 3, 4, 5 }, new int[] { -9, 1, 2, 3, 4, 5 })]
         [TestCase(1, new int[] { }, new int[] { 1 })]
         public static void AddBackTest(int value, int[] arr, int[] expectedArr)
@@ -50,7 +50,7 @@ namespace ListTests.DLinkedTests
         [TestCase(new int[] { 55, 33, 22, 33 }, new int[] { 55, 33, 22, 33, 0 })]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5, -9 })]
         [TestCase(new int[] { }, new int[] { 1 })]
-        public static void DeleteFromEndTest(int[] arr, int [] secArr)
+        public static void DeleteFromEndTest(int[] arr, int[] secArr)
         {
             DLList expected = new(arr);
             DLList actual = new(secArr);
@@ -72,9 +72,9 @@ namespace ListTests.DLinkedTests
 
         [TestCase(4, new int[] { 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44 })]
         [TestCase(2, new int[] { 55, 33, 22, 33, 0 }, new int[] { 55, 33, 64, 22, 33, 0 })]
-        [TestCase(0, new int[] { 1, 2, 3, 4, 5, -9 }, new int[] {0, 1, 2, 3, 4, 5, -9 })]
+        [TestCase(0, new int[] { 1, 2, 3, 4, 5, -9 }, new int[] { 0, 1, 2, 3, 4, 5, -9 })]
         [TestCase(0, new int[] { }, new int[] { 1 })]
-        public static void DeleteByIndexTest(int index, int []arr, int[] secArr)
+        public static void DeleteByIndexTest(int index, int[] arr, int[] secArr)
         {
             DLList expected = new(arr);
             DLList actual = new(secArr);
@@ -83,10 +83,10 @@ namespace ListTests.DLinkedTests
         }
 
         [TestCase(4, new int[] { 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44, 44, 44, 44 })]
-        [TestCase(2, new int[] { 55, 33, 64, 22}, new int[] { 55, 33, 64, 22, 33, 0 })]
+        [TestCase(2, new int[] { 55, 33, 64, 22 }, new int[] { 55, 33, 64, 22, 33, 0 })]
         [TestCase(0, new int[] { 0, 1, 2, 3, 4, 5, -9 }, new int[] { 0, 1, 2, 3, 4, 5, -9 })]
         [TestCase(0, new int[] { }, new int[] { })]
-        public static void DeleteFromEndSomeElemsTest(int amount, int []arr, int [] secArr)
+        public static void DeleteFromEndSomeElemsTest(int amount, int[] arr, int[] secArr)
         {
             DLList expected = new(arr);
             DLList actual = new(secArr);
@@ -96,7 +96,7 @@ namespace ListTests.DLinkedTests
 
         [TestCase(4, new int[] { 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44, 44, 44, 44 })]
         [TestCase(2, new int[] { 64, 22, 33, 0 }, new int[] { 55, 33, 64, 22, 33, 0 })]
-        [TestCase(7, new int[] {  }, new int[] { 0, 1, 2, 3, 4, 5, -9 })]
+        [TestCase(7, new int[] { }, new int[] { 0, 1, 2, 3, 4, 5, -9 })]
         [TestCase(0, new int[] { }, new int[] { })]
         public static void DeleteFromHeadSomeElemsTest(int amount, int[] arr, int[] secArr)
         {
@@ -138,8 +138,8 @@ namespace ListTests.DLinkedTests
         [TestCase(666, 2, new int[] { 44, 44, 666, 44, 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44, 44, 44, 44 })]
         [TestCase(2, 0, new int[] { 2, 33, 64, 22, 33, 0 }, new int[] { 55, 33, 64, 22, 33, 0 })]
         [TestCase(999, 2, new int[] { 0, 1, 999, 3, 4, 5, -9 }, new int[] { 0, 1, 2, 3, 4, 5, -9 })]
-        [TestCase(0, 0, new int[] {0 }, new int[] {1 })]
-        public static void ChangeByIndexTest(int value, int index, int[] arr, int[]secArr)
+        [TestCase(0, 0, new int[] { 0 }, new int[] { 1 })]
+        public static void ChangeByIndexTest(int value, int index, int[] arr, int[] secArr)
         {
             DLList expectedList;
             DLList actualList;
@@ -149,11 +149,11 @@ namespace ListTests.DLinkedTests
             actualList.ChangeByIndex(index, value);
             Assert.AreEqual(expectedList, actualList);
         }
-        [TestCase( new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, new int[] { 7, 6, 5, 4, 3, 2, 1, 0 })]
+        [TestCase(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, new int[] { 7, 6, 5, 4, 3, 2, 1, 0 })]
         [TestCase(new int[] { 1, 0 }, new int[] { 0, 1 })]
         [TestCase(new int[] { 0 }, new int[] { 0 })]
         [TestCase(new int[] { 0, 1, 2 }, new int[] { 2, 1, 0 })]
-        public static void ReverseTest(int[] arr, int[]secArr)
+        public static void ReverseTest(int[] arr, int[] secArr)
         {
             DLList expectedList;
             DLList actualList;
@@ -164,13 +164,13 @@ namespace ListTests.DLinkedTests
             Assert.AreEqual(expectedList, actualList);
         }
 
-        [TestCase(7 ,new int[] { 0, 1, 2, 3, 4, 5, 6, 7 })]
+        [TestCase(7, new int[] { 0, 1, 2, 3, 4, 5, 6, 7 })]
         [TestCase(1, new int[] { 1 })]
         [TestCase(6, new int[] { 1, 2, 3, 4, 5, 6 })]
         [TestCase(99, new int[] { 99, 1, 2, 3, 4 })]
         [TestCase(1, new int[] { -1, -32, 1, 0, 0 })]
 
-        public static void GetMaxValueTest(int expected, int [] arr)
+        public static void GetMaxValueTest(int expected, int[] arr)
         {
             DLList actualList;
             int actual;
@@ -202,7 +202,7 @@ namespace ListTests.DLinkedTests
         [TestCase(0, new int[] { 99, 1, 2, 3, 4 })]
         [TestCase(3, new int[] { -1, -32, 1, 0, 0 })]
         [TestCase(6, new int[] { 123, -1, -32, -123, 1, 0, 1234 })]
-        public static void FindIndexOfMaxContentTest(int expected, int[]arr)
+        public static void FindIndexOfMaxContentTest(int expected, int[] arr)
         {
             DLList actualList;
             int actual;
@@ -225,6 +225,42 @@ namespace ListTests.DLinkedTests
 
             actualList = new(arr);
             actual = actualList.FindIndexOfMinContent();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6}, new int[] { 6, 5, 4, 3, 2, 1})]
+        [TestCase(new int[] {1, 2, 23, 33, 55}, new int[] { 1, 2, 55, 33, 23 })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1}, new int[] { 1, 1, 1, 1, 1})]
+        [TestCase(new int[] { 1, 33}, new int[] { 1, 33})]
+        public static void SortByAscendingTest(int[]arr, int[] secArr)
+        {
+            DLList expected = new(arr);
+            DLList actual = new(secArr);
+            actual.SortByAscending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 6, 5, 4, 3, 2, 1 }, new int[] { 6, 5, 4, 3, 2, 1 })]
+        [TestCase(new int[] { 55, 33, 23, 2, 1 }, new int[] { 1, 2, 23, 33, 55 })]
+        [TestCase(new int[] { 1, 1, 1, 1, 1 }, new int[] { 1, 1, 1, 1, 1 })]
+        [TestCase(new int[] { 33, 1 }, new int[] { 1, 33 })]
+        public static void SortByDescendingTest(int[] arr, int[] secArr)
+        {
+            DLList expected = new(arr);
+            DLList actual = new(secArr);
+            actual.SortByDescending();
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase(6,new int[] {1, 2, 3, 4, 5  }, new int[] {1, 2, 3, 4, 5, 6 })]
+        [TestCase(0,new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 0, 1, 2, 3, 4, 5, 6 })]
+        [TestCase(0,new int[] { }, new int[] {0 })]
+        [TestCase(1,new int[] { 1, 1, 1, 1, 1, 1 }, new int[] {1, 1, 1, 1, 1, 1, 1})]
+        [TestCase(-95,new int[] { 123, 54, 44, 987, 5 }, new int[] { 123, 54, -95, 44, 987, 5 })]
+        public static void DeleteOneByValueTest(int value, int []arr, int[]secArr)
+        {
+            DLList expected = new(arr);
+            DLList actual = new(secArr);
+            actual.DeleteOneByValue(value);
             Assert.AreEqual(expected, actual);
         }
     }

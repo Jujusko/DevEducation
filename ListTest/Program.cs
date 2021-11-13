@@ -10,13 +10,12 @@ namespace ListTest
         static void Main(string[] args)
         {
 
-            int[] a = new int[] { 111, 222, 333 };
-            int[] b = new int[] {1, 2, 3 };
+            int[] a = new int[] { 1, 2, 3, 4, 5, 6};
             DLList test = new(a);
-            DLList ttt = new(b);
             Console.WriteLine(test);
-            test.AddByIndex(ttt, 1);
+            test.SortByAscending();
             Console.WriteLine(test);
+            test.WriteTail();
         }
     }
 }

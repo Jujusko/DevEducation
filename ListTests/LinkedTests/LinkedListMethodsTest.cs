@@ -208,7 +208,7 @@ namespace ListTests
         public static void GetValueByIndexTest(int expected, int index, int[] arr)
         {
             LinkedList test = new LinkedList(arr);
-            Assert.AreEqual(expected, test.getValueByIndex(index));
+            Assert.AreEqual(expected, test.GetValueByIndex(index));
         }
 
         [TestCase(3, 2, new int[] { 1, 2, 3, 5, 22 })]

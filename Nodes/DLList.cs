@@ -414,6 +414,7 @@ namespace Nodes
         {
             DLNode reversed;
             DLNode saveHead;
+            DLNode temp;
             
             if (_root != null && _root.Next != null)
             {
@@ -427,6 +428,25 @@ namespace Nodes
                     reversed.Next.Prev = reversed;
                     reversed = reversed.Next;
                 }
+                _tail = reversed;
+                /*
+                 * temp = _tail;
+                while (temp.Prev != null)
+                {
+                    temp = temp.Prev;
+                    reversed.Next = new(temp.Value);
+                    reversed.Next.Prev = reversed;
+                    reversed = reversed.Next;
+                }
+
+                while (reversed.Prev != null)
+                {
+                    reversed = reversed.Prev;
+                    _tail.Prev = reversed;
+                    _tail = _tail.Prev;
+                }
+                НЕ МОГУ СВЯЗТЬ ХВОСТ ЖОБАНИЙ
+                */
                 _root = saveHead;
             }
             else
@@ -570,7 +590,6 @@ namespace Nodes
                     {
                         if (maxValue < tmp.Value)
                         {
-                            maxValue = tmp.Value;
                             neededIndex = index + 1;
                         }
                         return neededIndex;
@@ -580,7 +599,6 @@ namespace Nodes
                     {
                         if (maxValue < tmp2.Value)
                         {
-                            maxValue = tmp2.Value;
                             neededIndex = Len - index - 1;
                         }
                         return neededIndex;
@@ -629,7 +647,6 @@ namespace Nodes
                     {
                         if (minValue > tmp.Value)
                         {
-                            minValue = tmp.Value;
                             neededIndex = index + 1;
                         }
                         return neededIndex;
@@ -639,7 +656,6 @@ namespace Nodes
                     {
                         if (minValue > tmp2.Value)
                         {
-                            minValue = tmp2.Value;
                             neededIndex = Len - (index + 1) - 1;
                         }
                         return neededIndex;
@@ -680,7 +696,14 @@ namespace Nodes
                 newRoot.Next.Prev = newRoot;
                 newRoot = newRoot.Next;
             }
+            saveHead.Prev = null;
             _root = saveHead;
+            while (saveHead.Next != null)
+            {
+                saveHead = saveHead.Next;
+            }
+            _tail = saveHead;
+
         }
 
         public void SortByDescending()
@@ -707,6 +730,11 @@ namespace Nodes
                 newRoot = newRoot.Next;
             }
             _root = saveHead;
+            while (saveHead.Next != null)
+            {
+                saveHead = saveHead.Next;
+            }
+            _tail = saveHead;
         }
         #endregion
 
@@ -922,7 +950,24 @@ namespace Nodes
             }
             return s;
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
+        public void WriteTail()
+        {
+            DLNode tmp = _tail;
+
+            while (tmp!=null)
+            {
+                Console.Write(tmp.Value + " ");
+                tmp = tmp.Prev;
+            }
+            Console.WriteLine();
+
+        }
     }
 }
 

@@ -76,7 +76,7 @@ namespace ListTests.LinkedTests
         public void getValueByIndexNegativeTest(int value, int[] arr)
         {
             LinkedList actual = new LinkedList(arr);
-            Assert.Throws<Exception>(() => actual.getValueByIndex(value));
+            Assert.Throws<Exception>(() => actual.GetValueByIndex(value));
         }
 
         [TestCase(4322, new int[] { 1, 2, 3, 5, 22 })]
@@ -86,7 +86,7 @@ namespace ListTests.LinkedTests
         {
             LinkedList actual = new LinkedList(arr);
 
-            Assert.Throws<Exception>(() => actual.getValueByIndex(index));
+            Assert.Throws<Exception>(() => actual.GetIndexByContent(index));
         }
 
         [TestCase(4322, new int[] { 1, 2, 3, 5, 22 })]

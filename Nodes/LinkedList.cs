@@ -366,7 +366,7 @@ namespace Nodes
 
         #region get some data
 
-        public int getValueByIndex(int index)
+        public int GetValueByIndex(int index)
         {
             Node tmp;
             int maxLen;
@@ -840,6 +840,9 @@ namespace Nodes
             return _root;
         }
 
-
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -85,7 +85,6 @@ namespace ListTests.DLinkedTests
         [TestCase(4, new int[] { 44, 44, 44, 44, 44 }, new int[] { 44, 44, 44, 44, 44, 44, 44, 44, 44 })]
         [TestCase(2, new int[] { 55, 33, 64, 22 }, new int[] { 55, 33, 64, 22, 33, 0 })]
         [TestCase(0, new int[] { 0, 1, 2, 3, 4, 5, -9 }, new int[] { 0, 1, 2, 3, 4, 5, -9 })]
-        [TestCase(0, new int[] { }, new int[] { })]
         public static void DeleteFromEndSomeElemsTest(int amount, int[] arr, int[] secArr)
         {
             DLList expected = new(arr);
@@ -261,6 +260,64 @@ namespace ListTests.DLinkedTests
             DLList expected = new(arr);
             DLList actual = new(secArr);
             actual.DeleteOneByValue(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(6,1, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5, 6 })]
+        [TestCase(0,1, new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 0, 1, 2, 3, 4, 5, 6 })]
+        [TestCase(0,1, new int[] { }, new int[] { 0 })]
+        [TestCase(0, 8, new int[] { }, new int[] { 0, 0,0,0,0,0,0,0 })]
+        [TestCase(1, 7,  new int[] { }, new int[] { 1, 1, 1, 1, 1, 1, 1 })]
+        [TestCase(-95,2, new int[] { 123, 54, 44, 987, 5 }, new int[] {-95,  123, 54, -95, 44, 987, 5 })]
+        public static void DeleteAllByValueTest(int value,int expected, int[] arr, int[] secArr)
+        {
+            int act;
+            DLList expectedList = new(arr);
+            DLList actual = new(secArr);
+            act = actual.DeleteAllByValue(value);
+            Assert.AreEqual(expectedList, actual);
+            Assert.AreEqual(expected, act);
+        }
+
+        [TestCase(new int[] { 1, 2, 3}, new int[] { 4, 5}, new int[] { 1, 2, 3, 4, 5})]
+        [TestCase(new int[] { 1, 2, 3}, new int[] {}, new int[] { 1, 2, 3})]
+        [TestCase(new int[] {}, new int[] { 4, 5 }, new int[] {4, 5 })]
+
+        public static void AddFrontForListTest(int [] arr, int[]secArr, int[]expectedAr)
+        {
+            DLList expected = new(expectedAr);
+            DLList actual = new(arr);
+            DLList toAdd = new(secArr);
+
+            actual.AddFront(toAdd);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5 }, new int[] {4,5,1,2,3 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { }, new int[] { 1, 2, 3 })]
+        [TestCase(new int[] { }, new int[] { 4, 5 }, new int[] { 4, 5 })]
+
+        public static void AddBackForListTest(int[] arr, int[] secArr, int[] expectedAr)
+        {
+            DLList expected = new(expectedAr);
+            DLList actual = new(arr);
+            DLList toAdd = new(secArr);
+
+            actual.AddBack(toAdd);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(1,new int[] { 1, 2, 3 }, new int[] { 4, 5 }, new int[] { 1,4, 5, 2, 3 })]
+        [TestCase(0, new int[] { 1, 2, 3 }, new int[] { }, new int[] { 1, 2, 3 })]
+        [TestCase(0,new int[] { }, new int[] { 4, 5 }, new int[] { 4, 5 })]
+
+        public static void AddByIndexForListTest(int index, int[] arr, int[] secArr, int[] expectedAr)
+        {
+            DLList expected = new(expectedAr);
+            DLList actual = new(arr);
+            DLList toAdd = new(secArr);
+
+            actual.AddByIndex(toAdd, index);
             Assert.AreEqual(expected, actual);
         }
     }

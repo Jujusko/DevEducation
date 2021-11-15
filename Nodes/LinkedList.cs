@@ -357,7 +357,8 @@ namespace Nodes
                         prevNode = prevNode.Next;
                    }
                 }
-                throw new ArgumentException("there is no value");
+                // throw new ArgumentException("there is no value");
+                return cnt;
             }
             throw new ArgumentException("there is no value");
         }
@@ -404,10 +405,18 @@ namespace Nodes
             {
                 tmp = tmp.Next;
                 index++;
+                if (tmp == null)
+                {
+                    break;
+                }
                 if (tmp.Value == content)
                 {
                     return index;
                 }
+            }
+            if (_root.Value == content)
+            {
+                return 0;
             }
             throw new Exception("there is no needed value");
         }

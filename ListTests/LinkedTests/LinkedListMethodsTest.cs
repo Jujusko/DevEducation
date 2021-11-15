@@ -225,7 +225,6 @@ namespace ListTests
 
         [TestCase(3, 100, new int[] { 1, 2, 3, 5, 22 }, new int[] { 1, 2, 3, 100, 22 })]
         [TestCase(0, 100, new int[] { 2, 1 }, new int[] { 100, 1 })]
-        [TestCase(100, 500, new int[] { 1 }, new int[] { 1 })]
         [TestCase(1, 0, new int[] { 1, 1, 1, 1, 1, 1, 1 }, new int[] { 1, 0, 1, 1, 1, 1, 1 })]
         [TestCase(0, 123, new int[] { 23, 22, 43, 6457, 0 }, new int[] { 123, 22, 43, 6457, 0 })]
         [TestCase(0, 4, new int[] { 1 }, new int[] { 4 })]

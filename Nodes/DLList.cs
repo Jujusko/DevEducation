@@ -123,21 +123,21 @@ namespace Nodes
                 else
                 {
                     steps = Len - index;
-                    if (steps == 1)
+                    if (steps == 0)
                     {
-                        AddBack(value);
+                        AddFront(value);
                     }
                     else
                     {
                         tmp = _tail;
-                        while (steps-- != 0)
+                        while (--steps != 0)
                         {
                             tmp = tmp.Prev;
                         }
+                        createdNode.Next = tmp;
                         createdNode.Prev = tmp.Prev;
-                        createdNode.Next = tmp.Next;
-                        tmp.Next = createdNode;
-                        tmp.Prev = createdNode.Prev.Prev;
+                        tmp.Prev.Next = createdNode;
+                        tmp.Prev = createdNode;
                         Len++;
                     }
                 }
@@ -162,8 +162,19 @@ namespace Nodes
             if (_root != null)
             {
                 _tail = _tail.Prev;
-                _tail.Next = null;
+                if (_tail == null)
+                {
+                    _root = null;
+                }
+                else
+                {
+                    _tail.Next = null;
+                }
                 Len--;
+            }
+            else
+            {
+                throw new Exception("List is empty");
             }
         }
 
@@ -177,6 +188,10 @@ namespace Nodes
                     _root.Prev = null;
                 }
                 Len--;
+            }
+            else
+            {
+                throw new Exception("List is empty");
             }
         }
 
@@ -202,12 +217,12 @@ namespace Nodes
                 {
                     tmp = _root;
 
-                    while (--index != 0)
+                    while (index-- != 0)
                     {
                         tmp = tmp.Next;
                     }
                     tmp.Next.Prev = tmp.Prev;
-                    tmp.Next = tmp.Next.Next;
+                    tmp.Prev.Next = tmp.Next;
                     Len--;
                 }
                 else
@@ -234,7 +249,7 @@ namespace Nodes
         {
             if (amount < 0 || amount >= Len)
             {
-                throw new ArgumentException($"Too big Lists to delete, it should being less than {Len}");
+                throw new ArgumentException("Bad amount");
             }
             if (_root != null)
             {
@@ -429,24 +444,7 @@ namespace Nodes
                     reversed = reversed.Next;
                 }
                 _tail = reversed;
-                /*
-                 * temp = _tail;
-                while (temp.Prev != null)
-                {
-                    temp = temp.Prev;
-                    reversed.Next = new(temp.Value);
-                    reversed.Next.Prev = reversed;
-                    reversed = reversed.Next;
-                }
 
-                while (reversed.Prev != null)
-                {
-                    reversed = reversed.Prev;
-                    _tail.Prev = reversed;
-                    _tail = _tail.Prev;
-                }
-                НЕ МОГУ СВЯЗТЬ ХВОСТ ЖОБАНИЙ
-                */
                 _root = saveHead;
             }
             else
@@ -464,39 +462,39 @@ namespace Nodes
         public int GetMaxValue()
         {
             int     maxValue;
-            DLNode  tmp;
-            DLNode tmp2;
+            DLNode  fromRoot;
+            DLNode fromTail;
 
             if (_root != null)
             {
-                tmp = _root;
-                tmp2 = _tail;
-                maxValue = tmp.Value;
-                while (tmp.Value != tmp2.Value)
+                fromRoot = _root;
+                fromTail = _tail;
+                maxValue = fromRoot.Value;
+                while (fromRoot.Value != fromTail.Value)
                 {
-                    if (maxValue < tmp.Value)
+                    if (maxValue < fromRoot.Value)
                     {
-                        maxValue = tmp.Value;
+                        maxValue = fromRoot.Value;
                     }
-                    if (maxValue < tmp2.Value)
+                    if (maxValue < fromTail.Value)
                     {
-                        maxValue = tmp2.Value;
+                        maxValue = fromTail.Value;
                     }
-                    tmp = tmp.Next;
-                    if (tmp == tmp2)//NEED TO OPTIM
+                    fromRoot = fromRoot.Next;
+                    if (fromRoot == fromTail)//NEED TO OPTIM
                     {
-                        if (maxValue < tmp.Value)
+                        if (maxValue < fromRoot.Value)
                         {
-                            maxValue = tmp.Value;
+                            maxValue = fromRoot.Value;
                         }
                         break;
                     }
-                    tmp2 = tmp2.Prev;
-                    if (tmp == tmp2)
+                    fromTail = fromTail.Prev;
+                    if (fromRoot == fromTail)
                     {
-                        if (maxValue < tmp2.Value)
+                        if (maxValue < fromTail.Value)
                         {
-                            maxValue = tmp2.Value;
+                            maxValue = fromTail.Value;
                         }
                         break;
                     }
@@ -512,39 +510,39 @@ namespace Nodes
         public int GetMinValue()
         {
             int maxValue;
-            DLNode tmp;
-            DLNode tmp2;
+            DLNode fromRoot;
+            DLNode fromTail;
 
             if (_root != null)
             {
-                tmp = _root;
-                tmp2 = _tail;
-                maxValue = tmp.Value;
-                while (tmp.Value != tmp2.Value)
+                fromRoot = _root;
+                fromTail = _tail;
+                maxValue = fromRoot.Value;
+                while (fromRoot.Value != fromTail.Value)
                 {
-                    if (maxValue > tmp.Value)
+                    if (maxValue > fromRoot.Value)
                     {
-                        maxValue = tmp.Value;
+                        maxValue = fromRoot.Value;
                     }
-                    if (maxValue > tmp2.Value)
+                    if (maxValue > fromTail.Value)
                     {
-                        maxValue = tmp2.Value;
+                        maxValue = fromTail.Value;
                     }
-                    tmp = tmp.Next;
-                    if (tmp == tmp2)//NEED TO OPTIM
+                    fromRoot = fromRoot.Next;
+                    if (fromRoot == fromTail)//NEED TO OPTIM
                     {
-                        if (maxValue > tmp.Value)
+                        if (maxValue > fromRoot.Value)
                         {
-                            maxValue = tmp.Value;
+                            maxValue = fromRoot.Value;
                         }
                         break;
                     }
-                    tmp2 = tmp2.Prev;
-                    if (tmp == tmp2)
+                    fromTail = fromTail.Prev;
+                    if (fromRoot == fromTail)
                     {
-                        if (maxValue > tmp2.Value)
+                        if (maxValue > fromTail.Value)
                         {
-                            maxValue = tmp2.Value;
+                            maxValue = fromTail.Value;
                         }
                         break;
                     }
@@ -679,30 +677,32 @@ namespace Nodes
             Node sryAgain;
             DLNode newRoot;
             DLNode saveHead;
-
-            while (_root != null)
+            if (_root != null)
             {
-                sryMax.AddFront(_root.Value);
-                _root = _root.Next;
+                while (_root != null)
+                {
+                    sryMax.AddFront(_root.Value);
+                    _root = _root.Next;
+                }
+                sryMax.SortFromMinToMax();
+                sryAgain = sryMax.GetRoot();
+                newRoot = new(sryAgain.Value);
+                saveHead = newRoot;
+                while (sryAgain.Next != null)
+                {
+                    sryAgain = sryAgain.Next;
+                    newRoot.Next = new(sryAgain.Value);
+                    newRoot.Next.Prev = newRoot;
+                    newRoot = newRoot.Next;
+                }
+                saveHead.Prev = null;
+                _root = saveHead;
+                while (saveHead.Next != null)
+                {
+                    saveHead = saveHead.Next;
+                }
+                _tail = saveHead;
             }
-            sryMax.SortFromMinToMax();
-            sryAgain = sryMax.GetRoot();
-            newRoot = new(sryAgain.Value);
-            saveHead = newRoot;
-            while (sryAgain.Next != null)
-            {
-                sryAgain = sryAgain.Next;
-                newRoot.Next = new(sryAgain.Value);
-                newRoot.Next.Prev = newRoot;
-                newRoot = newRoot.Next;
-            }
-            saveHead.Prev = null;
-            _root = saveHead;
-            while (saveHead.Next != null)
-            {
-                saveHead = saveHead.Next;
-            }
-            _tail = saveHead;
 
         }
 
@@ -713,28 +713,31 @@ namespace Nodes
             DLNode newRoot;
             DLNode saveHead;
 
-            while (_root != null)
+            if (_root != null)
             {
-                sryMax.AddFront(_root.Value);
-                _root = _root.Next;
+                while (_root != null)
+                {
+                    sryMax.AddFront(_root.Value);
+                    _root = _root.Next;
+                }
+                sryMax.SortFromMaxToMin();
+                sryAgain = sryMax.GetRoot();
+                newRoot = new(sryAgain.Value);
+                saveHead = newRoot;
+                while (sryAgain.Next != null)
+                {
+                    sryAgain = sryAgain.Next;
+                    newRoot.Next = new(sryAgain.Value);
+                    newRoot.Next.Prev = newRoot;
+                    newRoot = newRoot.Next;
+                }
+                _root = saveHead;
+                while (saveHead.Next != null)
+                {
+                    saveHead = saveHead.Next;
+                }
+                _tail = saveHead;
             }
-            sryMax.SortFromMaxToMin();
-            sryAgain = sryMax.GetRoot();
-            newRoot = new(sryAgain.Value);
-            saveHead = newRoot;
-            while (sryAgain.Next != null)
-            {
-                sryAgain = sryAgain.Next;
-                newRoot.Next = new(sryAgain.Value);
-                newRoot.Next.Prev = newRoot;
-                newRoot = newRoot.Next;
-            }
-            _root = saveHead;
-            while (saveHead.Next != null)
-            {
-                saveHead = saveHead.Next;
-            }
-            _tail = saveHead;
         }
         #endregion
 
@@ -765,9 +768,13 @@ namespace Nodes
                 else
                 {
                     tmp = _root;
-                    while (tmp.Value != value)
+                    while (tmp != null && tmp.Value != value)
                     {
                         tmp = tmp.Next;
+                    }
+                    if (tmp == null)
+                    {
+                        throw new Exception("Bad value");
                     }
                     tmp.Next.Prev = tmp.Prev;
                     tmp.Prev.Next = tmp.Next;
@@ -781,43 +788,47 @@ namespace Nodes
 
         public int DeleteAllByValue(int value)
         {
-            DLNode tmp;
+            DLNode newList;
+            DLNode saveHead;
             int cnt;
 
             cnt = 0;
             if (_root != null)
             {
-                if (_root.Next == null && _root.Value != value)
-                {
-                    throw new Exception("Bad value");
-                }
-                while (_root.Value == value && _root != null)
+
+                while (_root.Next != null && _root.Value == value)
                 {
                     _root = _root.Next;
                     cnt++;
-                    if (_root == null)
-                    {
-                        return cnt;
-                    }
-                    _root.Prev = null;
                 }
-                tmp = _root;
-                while (tmp.Next != null)
+                if (_root.Next == null)
                 {
-                    if (tmp.Value == value)
+                    if (_root.Value == value)
                     {
-                        tmp.Next.Prev = tmp.Prev;
-                        tmp.Prev.Next = tmp.Next;
+                        _tail = null;
+                        _root = null;
+                        return cnt + 1;
+                    }
+                }
+                newList = new(_root.Value);
+                saveHead = newList;
+                _root = _root.Next;
+                while (_root != null)
+                {
+                    if (_root.Value != value)
+                    {
+                        newList.Next = new(_root.Value);
+                        newList.Next.Prev = newList;
+                        newList = newList.Next;
+                    }
+                    else
+                    {
                         cnt++;
                     }
-                    tmp = tmp.Next;
+                    _tail = newList;
+                    _root = _root.Next;
                 }
-                if (tmp.Value == value)
-                {
-                    tmp = tmp.Prev;
-                    tmp.Next = null;
-                    cnt++;
-                }
+                _root = saveHead;
                 return cnt;
             }
             else
@@ -833,6 +844,7 @@ namespace Nodes
                 {
                     _tail.Next = newList._root;
                     newList._root.Prev = _tail;
+                    _tail = newList._tail;
                 }
             }
             if (_root == null && newList._root != null)
@@ -863,12 +875,23 @@ namespace Nodes
             Len += newList.Len;
         }
 
+
         public void AddByIndex(DLList newList, int index)
         {
             DLNode tmp;
             DLNode tmp2;
+
+            if (index < 0)
+            {
+                throw new Exception("you took bad index");
+            }
             if (_root == null)
             {
+                if (index == 0)
+                {
+                    AddFront(newList);
+                    return;
+                }
                 throw new Exception("List is empty");
             }
             if (index > Len)
@@ -885,9 +908,8 @@ namespace Nodes
                 tmp = tmp.Next;
             }
             tmp2 = tmp.Next;
-            Console.WriteLine(tmp.Value);
-            Console.WriteLine(tmp2.Value);
             tmp.Next = newList._root;
+            tmp.Next.Prev = tmp;
             tmp2.Prev = newList._tail;
             newList._tail.Next = tmp2;
         }

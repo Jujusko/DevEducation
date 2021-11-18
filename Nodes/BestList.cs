@@ -8,7 +8,8 @@ namespace Nodes
 {
     public abstract class BestList
     {
-        public abstract void AddFront(int value);
+       
+        public abstract void AddFront<T>(T value);
         public abstract void AddBack(int value);
 
         public abstract void AddByIndex(int index, int value);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nodes
 {
-    public class LinkedList
+    public class LinkedList:BestList
     {
         private Node _root;
 
@@ -39,7 +39,7 @@ namespace Nodes
         #endregion
 
         #region methods to ADD content
-        public void AddFront(int value)
+        public override void AddFront(int value)
         {
             Node    tmp = _root;
 
@@ -56,7 +56,8 @@ namespace Nodes
                 _root = new Node(value);
             }
         }
-        public void AddBack(int value)
+
+        public override void AddBack(int value)
         {
             Node tmp = new Node(value);
             if (_root == null)
@@ -69,7 +70,7 @@ namespace Nodes
 
         }
 
-        public void AddByIndex(int index, int value)
+        public override void AddByIndex(int index, int value)
         {
             Node insertNode;
             Node tmp;
@@ -102,7 +103,7 @@ namespace Nodes
 
         #region delete content
 
-        public void DeleteFromEnd()
+        public override void DeleteFromEnd()
         {
             Node tmp;
             if (_root == null)
@@ -124,7 +125,7 @@ namespace Nodes
             
         }
 
-        public void DeleteAtHead()
+        public override void DeleteAtHead()
         {
             Node tmp;
 
@@ -137,7 +138,7 @@ namespace Nodes
             _root = tmp;
         }
 
-        public void DeleteByIndex(int index)
+        public override void DeleteByIndex(int index)
         {
             Node tmp;
             Node tmp2;
@@ -176,7 +177,7 @@ namespace Nodes
             }
         }
 
-        public void DeleteSomeElementsFromEnd(int amount)
+        public override void DeleteSomeElementsFromEnd(int amount)
         {
             int amoutnOfElems;
             int neededIndex;
@@ -203,7 +204,7 @@ namespace Nodes
             }
         }
 
-        public void DeleteSomeElementsFromHead(int amount)
+        public override void DeleteSomeElementsFromHead(int amount)
         {
             int amountOfElems;
             int skipElems;
@@ -230,7 +231,7 @@ namespace Nodes
             }
         }
 
-        public void DeleteSomeElementsFromNeededIndex(int index, int amount)
+        public override void DeleteSomeElementsFromNeededIndex(int index, int amount)
         {
             Node firstToConnect;
             Node secondToConnect;
@@ -262,7 +263,7 @@ namespace Nodes
             }
         }
 
-        public int GetLenght()
+        public override int GetLenght()
         {
             Node tmp;
             int lenght;
@@ -276,7 +277,7 @@ namespace Nodes
             }
             return lenght;
         }
-        public int DeleteOneNodeByContent(int value)
+        public override int DeleteOneNodeByContent(int value)
         {
             int index;
 
@@ -317,7 +318,7 @@ namespace Nodes
             throw new ArgumentException("there is no value");
         }
 
-        public int DeleteAllNodesWithSameContent(int content)
+        public override int DeleteAllNodesWithSameContent(int content)
         {
             int cnt = 0;
             Node tmp;
@@ -367,7 +368,7 @@ namespace Nodes
 
         #region get some data
 
-        public int GetValueByIndex(int index)
+        public override int GetValueByIndex(int index)
         {
             Node tmp;
             int maxLen;
@@ -390,7 +391,7 @@ namespace Nodes
             return tmp.Value;
         }
 
-        public int GetIndexByContent(int content)
+        public override int GetIndexByContent(int content)
         {
             Node tmp;
             int index;
@@ -420,7 +421,7 @@ namespace Nodes
             }
             throw new Exception("there is no needed value");
         }
-        public void SetContentByIndex(int index, int value)
+        public override void SetContentByIndex(int index, int value)
         {
             //Не уверен на счет логики, если мы получим индекс
             // больше макс индекса, мы ведь просто
@@ -449,7 +450,7 @@ namespace Nodes
             }
         }
 
-        public void ReverseList()
+        public override void ReverseList()
         {
             //У ЭТОГО ФРАНКЕШТЕЙНА КОСТЫЛЕЙ БОЛЬШЕ, ЧЕМ КОНЕЧНОСТЕЙ
             Node tmp1;
@@ -507,7 +508,7 @@ namespace Nodes
             
         }
 
-        public int GetMaxContent()
+        public override int GetMaxContent()
         {
             Node neededNode;
             Node tmp;
@@ -530,7 +531,7 @@ namespace Nodes
             }
             return neededNode.Value;
         }
-        public int GetMinContent()
+        public override int GetMinContent()
         {
             Node neededNode;
             Node tmp;
@@ -550,7 +551,7 @@ namespace Nodes
             return neededNode.Value;
         }
 
-        public int GetMaxContentIndex()
+        public override int GetMaxContentIndex()
         {
             Node neededNode;
             Node tmp;
@@ -578,7 +579,7 @@ namespace Nodes
             return neededIndex;
         }
 
-        public int GetMinContentIndex()
+        public override int GetMinContentIndex()
         {
             Node neededNode;
             Node tmp;
@@ -611,7 +612,7 @@ namespace Nodes
 
         #region methods to sort list
 
-        public void SortFromMinToMax()
+        public override void SortFromMinToMax()
         {
             Node newRoot;
             Node newNext;
@@ -653,7 +654,7 @@ namespace Nodes
             }
         }
 
-        public void SortFromMaxToMin()
+        public override void SortFromMaxToMin()
         {
             Node newRoot;
             Node newNext;

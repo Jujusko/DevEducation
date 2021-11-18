@@ -22,6 +22,8 @@ namespace ListTest
             aa.AddByIndex(add, 1);
             Console.WriteLine(aa);
             aa.WriteTail();
+            BestList asa = new LinkedList(new int[] { 1, 2, 3, 4, 5});
+            Console.WriteLine(asa);
         }
     }
 }
